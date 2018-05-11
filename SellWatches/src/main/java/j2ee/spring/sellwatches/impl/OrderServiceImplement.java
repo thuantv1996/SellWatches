@@ -6,32 +6,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import j2ee.spring.sellwatches.dao.AccountDAO;
-import j2ee.spring.sellwatches.models.Account;
-import j2ee.spring.sellwatches.services.AccountService;
+import j2ee.spring.sellwatches.dao.OrderDAO;
+import j2ee.spring.sellwatches.models.Order;
 import j2ee.spring.sellwatches.services.MSSQLService;
+import j2ee.spring.sellwatches.services.Orderservice;
 
 @Component
-public class AccountServiceImplement implements AccountService,MSSQLService<Account>{
+public class OrderServiceImplement implements Orderservice, MSSQLService<Order> {
 
 	@Autowired
-	private AccountDAO accountDAO; 
+	private  OrderDAO orderDAO; 
 	
-	public List<Account> getList() {
-		return accountDAO.Select();
+	public List<Order> getList() {
+		return orderDAO.Select();
 	}
 
-	
-	public List<Account> select() {
+	public List<Order> select() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public boolean insert(Account t) {
+	public boolean insert(Order t) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public boolean update(Account t) {
+	public boolean update(Order t) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -41,7 +41,7 @@ public class AccountServiceImplement implements AccountService,MSSQLService<Acco
 		return false;
 	}
 
-	public Account findById(Object[] idPara) {
+	public Order findById(Object[] idPara) {
 		// TODO Auto-generated method stub
 		return null;
 	}
