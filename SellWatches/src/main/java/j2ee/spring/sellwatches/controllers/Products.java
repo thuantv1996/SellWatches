@@ -1,0 +1,15 @@
+package j2ee.spring.sellwatches.controllers;
+
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@Component
+public class Products {
+
+	@RequestMapping("/Products")
+	public String Default() {
+		return "products";
+	}
+}

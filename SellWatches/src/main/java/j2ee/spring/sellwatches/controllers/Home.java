@@ -29,10 +29,10 @@ public class Home {
 	@RequestMapping("/Index")
 	public String Index(Model model)
 	{
-		List<Order> list = service.select();
-		System.out.println(list.size());
-		Timestamp s = list.get(0).getDeliveryDay();
-		System.out.println(s);
+//		List<Order> list = service.select();
+//		System.out.println(list.size());
+//		Timestamp s = list.get(0).getDeliveryDay();
+//		System.out.println(s);
 		return "home";
 	}
 }
