@@ -1,15 +1,19 @@
 package j2ee.spring.sellwatches.models;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "CHITIETKM")
-public class DetailsPromotions {
+//@IdClass(DetailPromotionID.class)
+public class DetailPromotion implements Serializable {
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "MAKM")

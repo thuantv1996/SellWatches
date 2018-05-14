@@ -5,7 +5,7 @@
 <hibernate-configuration>
 	<session-factory>
 		<property name="connection.driver_class">net.sourceforge.jtds.jdbc.Driver</property>
-        <property name="connection.url">jdbc:jtds:sqlserver://localhost:1433/BANDONGHO;instance=MSSQLSERVER</property>
+        <property name="connection.url">jdbc:jtds:sqlserver://localhost:1732/BANDONGHO;instance=SQLEXPRESS</property>
         <property name="connection.username"></property>
         <property name="connection.password"></property>
         <!-- JDBC connection pool (use the built-in) -->
@@ -19,7 +19,15 @@
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
         
+		<mapping class="j2ee.spring.sellwatches.models.Account"/>
+		<mapping class="j2ee.spring.sellwatches.models.Category"/>
 		<mapping class="j2ee.spring.sellwatches.models.Customer"/>
+		<mapping class="j2ee.spring.sellwatches.models.DetailInvoice"/>
+		<mapping class="j2ee.spring.sellwatches.models.DetailPromotion"/>
 		<mapping class="j2ee.spring.sellwatches.models.Order"/>
+		<mapping class="j2ee.spring.sellwatches.models.Product"/>
+		<mapping class="j2ee.spring.sellwatches.models.Promotion"/>
+		<mapping class="j2ee.spring.sellwatches.models.Trademark"/>
+		<mapping class="j2ee.spring.sellwatches.models.TypeAccount"/>
 	</session-factory>
 </hibernate-configuration>

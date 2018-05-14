@@ -1,23 +1,28 @@
 package j2ee.spring.sellwatches.models;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "CHITIETDONHANG")
-public class DetailInvoice {
+//@IdClass(DetailInvoiceID.class)
+public class DetailInvoice implements Serializable {
 
 	@Id
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name = "MADH")
 	private Order order;
 	
 	@Id
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name = "MASP")
 	private Product product;
 	

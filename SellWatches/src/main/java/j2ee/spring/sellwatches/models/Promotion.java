@@ -15,26 +15,28 @@ import javax.persistence.Table;
 public class Promotion {
 	@Id
 	@Column(name = "MAKM")
-	private int id;
+	private String id;
 
-	@Column(name = "NGAYBATDAU")
+	@Column(name = "NGAYBD")
 	private Timestamp beginDay;
 
-	@Column(name = "NGAYKETTHUC")
-	private Timestamp engDay;
+	@Column(name = "NGAYKT")
+	private Timestamp endDay;
 
 	@Column(name = "TENKM")
 	private String namePromotion;
 
 	@OneToMany
 	@JoinColumn(name = "MAKM")
-	List<DetailsPromotions> listDetail;
+	List<DetailPromotion> listDetail;
 
-	public int getId() {
+	
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -46,12 +48,12 @@ public class Promotion {
 		this.beginDay = beginDay;
 	}
 
-	public Timestamp getEngDay() {
-		return engDay;
+	public Timestamp getEndDay() {
+		return endDay;
 	}
 
-	public void setEngDay(Timestamp engDay) {
-		this.engDay = engDay;
+	public void setEndDay(Timestamp engDay) {
+		this.endDay = engDay;
 	}
 
 	public String getNamePromotion() {
@@ -62,11 +64,11 @@ public class Promotion {
 		this.namePromotion = namePromotion;
 	}
 
-	public List<DetailsPromotions> getListDetail() {
+	public List<DetailPromotion> getListDetail() {
 		return listDetail;
 	}
 
-	public void setListDetail(List<DetailsPromotions> listDetail) {
+	public void setListDetail(List<DetailPromotion> listDetail) {
 		this.listDetail = listDetail;
 	}
 

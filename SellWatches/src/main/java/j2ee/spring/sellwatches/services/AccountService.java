@@ -9,5 +9,5 @@ import j2ee.spring.sellwatches.models.Account;
  * @author thuan
  *
  */
-public interface AccountService {
+public interface AccountService extends MSSQLService<Account> {
 }

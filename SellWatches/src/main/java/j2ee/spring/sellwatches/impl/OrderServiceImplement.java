@@ -18,32 +18,27 @@ public class OrderServiceImplement implements Orderservice, MSSQLService<Order> 
 	private  OrderDAO orderDAO; 
 	
 	public List<Order> getList() {
-		return orderDAO.Select();
+		return orderDAO.select();
 	}
 
 	public List<Order> select() {
-		// TODO Auto-generated method stub
-		return null;
+		return orderDAO.select();
 	}
 
 	public boolean insert(Order t) {
-		// TODO Auto-generated method stub
-		return false;
+		return orderDAO.insert(t);
 	}
 
 	public boolean update(Order t) {
-		// TODO Auto-generated method stub
-		return false;
+		return orderDAO.update(t);
 	}
 
 	public boolean delete(Object[] idPara) {
-		// TODO Auto-generated method stub
-		return false;
+		return orderDAO.delete(idPara);
 	}
 
 	public Order findById(Object[] idPara) {
-		// TODO Auto-generated method stub
-		return null;
+		return orderDAO.findById(idPara);
 	}
 
 }

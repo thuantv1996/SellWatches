@@ -11,39 +11,29 @@ import j2ee.spring.sellwatches.services.AccountService;
 import j2ee.spring.sellwatches.services.MSSQLService;
 
 @Component
-public class AccountServiceImplement implements AccountService,MSSQLService<Account>{
+public class AccountServiceImplement implements AccountService {
 
 	@Autowired
-	private AccountDAO accountDAO; 
-	
-	public List<Account> getList() {
-		return accountDAO.Select();
-	}
+	private AccountDAO accountDAO;
 
-	
 	public List<Account> select() {
-		// TODO Auto-generated method stub
-		return null;
+		return accountDAO.select();
 	}
 
 	public boolean insert(Account t) {
-		// TODO Auto-generated method stub
-		return false;
+		return accountDAO.insert(t);
 	}
 
 	public boolean update(Account t) {
-		// TODO Auto-generated method stub
-		return false;
+		return accountDAO.update(t);
 	}
 
 	public boolean delete(Object[] idPara) {
-		// TODO Auto-generated method stub
-		return false;
+		return accountDAO.delete(idPara);
 	}
 
 	public Account findById(Object[] idPara) {
-		// TODO Auto-generated method stub
-		return null;
+		return accountDAO.findById(idPara);
 	}
 
 }

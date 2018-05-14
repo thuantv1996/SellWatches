@@ -1,7 +1,6 @@
 package j2ee.spring.sellwatches.controllers;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,30 +8,37 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
-import j2ee.spring.sellwatches.impl.OrderServiceImplement;
-import j2ee.spring.sellwatches.models.Account;
-import j2ee.spring.sellwatches.models.Order;
-import j2ee.spring.sellwatches.services.Orderservice;
+import j2ee.spring.sellwatches.impl.ProductServiceImplement;
+import j2ee.spring.sellwatches.models.Product;
+import j2ee.spring.sellwatches.services.ProductService;
+import j2ee.spring.sellwatches.viewmodel.HomeViewModel;
+import j2ee.spring.sellwatches.viewmodel.ProductOnView;
 
 @Controller
 @Component
 public class Home {
 	
-	private OrderServiceImplement service;
-	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+	ProductService service;
+	
 	@Autowired
-	public Home (OrderServiceImplement service)
+	public Home(ProductServiceImplement impl)
 	{
-		this.service =service;
+		service = impl;
 	}
-	@RequestMapping("/Index")
-	public String Index(Model model)
+	
+	@RequestMapping(value = {"/Index","/"})
+	public String  Index(Model model)
 	{
-//		List<Order> list = service.select();
-//		System.out.println(list.size());
-//		Timestamp s = list.get(0).getDeliveryDay();
-//		System.out.println(s);
+		HomeViewModel viewModel = new HomeViewModel();
+		// lấy danh sách sản phầm bán chạy với 4 thuộc tính. Tên, Mô tả, Hình hảnh, mã sản phẩm (lấy 3 sản phẩm)
+		List<Product> lstSellingProduct = service.getSellingProduct(3);
+		viewModel.setSellingProduct(lstSellingProduct);
+		// lấy danh sách sản phẩm mới nhất lấy 8 sản phẩm
+		List<ProductOnView> lstNewProduct = service.getNewProduct(8);
+		model.addAttribute("lstSellingProduct",lstSellingProduct);
+		model.addAttribute("lstNewProduct",lstNewProduct);
 		return "home";
 	}
 }

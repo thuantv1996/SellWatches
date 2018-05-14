@@ -52,7 +52,7 @@ public class Product {
 
 	@OneToMany
 	@JoinColumn(name = "MASP")
-	private List<DetailsPromotions> listDetailsPromotions;
+	private List<DetailPromotion> listDetailPromotion;
 
 	public int getId() {
 		return id;
@@ -142,12 +142,12 @@ public class Product {
 		this.listDetailInvoice = listDetailInvoice;
 	}
 
-	public List<DetailsPromotions> getListDetailsPromotions() {
-		return listDetailsPromotions;
+	public List<DetailPromotion> getListDetailsPromotions() {
+		return listDetailPromotion;
 	}
 
-	public void setListDetailsPromotions(List<DetailsPromotions> listDetailsPromotions) {
-		this.listDetailsPromotions = listDetailsPromotions;
+	public void setListDetailPromotions(List<DetailPromotion> listDetailsPromotions) {
+		this.listDetailPromotion = listDetailsPromotions;
 	}
 
 }
