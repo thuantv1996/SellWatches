@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+  pageEncoding="UTF-8"%>
 	<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 	<!--top-header-->
 	<div class="top-header">
@@ -23,7 +25,10 @@
 						<div class="clearfix"></div>
 					</div>
 				</div>
-				<div class="col-md-6 top-header-left">
+				<div class="col-md-4 userMenu">
+					<jsp:include page="usermenu.jsp" />
+				</div>
+				<div class="col-md-2 top-header-left">
 					<div class="cart box_1">
 						<a href="<c:url value="/Checkout" />">
 							<div class="total">

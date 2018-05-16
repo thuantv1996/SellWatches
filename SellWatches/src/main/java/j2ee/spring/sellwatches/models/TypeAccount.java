@@ -2,6 +2,7 @@ package j2ee.spring.sellwatches.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,7 +21,7 @@ public class TypeAccount {
 	@Column(name = "TENLOAITK")
 	private String typeName;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "MALOAITK")
 	private List<Account> listAccount;
 

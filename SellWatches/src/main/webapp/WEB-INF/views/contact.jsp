@@ -1,4 +1,5 @@
-
+<%@ page language="java" contentType="text/html; charset=utf-8"
+  pageEncoding="UTF-8"%>
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com

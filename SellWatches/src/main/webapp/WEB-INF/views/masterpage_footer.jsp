@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+  pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!--information-starts-->
 	<div class="information">
@@ -24,7 +26,7 @@
 				<div class="col-md-3 infor-left">
 					<h3>My Account</h3>
 					<ul>
-						<li><a href="<c:url value="/Account" />"><p>My Account</p></a></li>
+						<li><a href="<c:url value="/Login" />"><p>My Account</p></a></li>
 						<li><a href="#"><p>My Credit slips</p></a></li>
 						<li><a href="#"><p>My Merchandise returns</p></a></li>
 						<li><a href="#"><p>My Personal info</p></a></li>
@@ -55,7 +57,7 @@
 					</form>
 				</div>
 				<div class="col-md-6 footer-right">					
-					<p>© 2015 Luxury Watches. All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+					<p>Â© 2015 Luxury Watches. All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
 				</div>
 				<div class="clearfix"></div>
 			</div>

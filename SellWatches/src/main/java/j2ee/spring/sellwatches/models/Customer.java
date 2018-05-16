@@ -2,24 +2,34 @@ package j2ee.spring.sellwatches.models;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.NumberFormat;
+
+import j2ee.spring.sellwatches.validator.Email;
 
 @Entity
 @Table(name = "KHACHHANG")
 public class Customer {
 	@Id
 	@Column(name = "MAKH")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@Column(name = "TENKH")
 	private String name;
 
+	@Email
 	@Column(name = "EMAIL")
 	private String email;
 
@@ -32,11 +42,11 @@ public class Customer {
 	@Column(name = "DIACHI")
 	private String address;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "MAKH")
 	private List<Order> listOrder;
 
-	@ManyToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "MATK")
 	private Account account;
 
