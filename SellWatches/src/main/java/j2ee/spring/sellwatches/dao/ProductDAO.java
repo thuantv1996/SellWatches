@@ -179,4 +179,49 @@ public class ProductDAO {
 		// Lấy ra khuyến mãi cao nhất
 		return 0;
 	}
+	
+	public List<Product> LoadProductAll() {
+		session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.getTransaction().begin();
+			@SuppressWarnings("unchecked")
+			List<Product> res = session.createQuery("from Product order by id DESC").getResultList();
+			session.getTransaction().commit();
+			return res;
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+			return null;
+		}
+	}
+	
+	public List<Product> LoadProductMen() {
+		session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.getTransaction().begin();
+			@SuppressWarnings("unchecked")
+			List<Product> res = session.createQuery("from Product p where p.category.id = 'LP00001' order by p.id DESC").getResultList();
+			session.getTransaction().commit();
+			return res;
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+			return null;
+		}
+	}
+	
+	public List<Product> LoadProductWomen() {
+		session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.getTransaction().begin();
+			@SuppressWarnings("unchecked")
+			List<Product> res = session.createQuery("from Product p where p.category.id = 'LP00002' order by p.id DESC").getResultList();
+			session.getTransaction().commit();
+			return res;
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+			return null;
+		}
+	}
 }

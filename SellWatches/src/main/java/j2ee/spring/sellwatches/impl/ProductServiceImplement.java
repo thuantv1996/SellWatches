@@ -91,6 +91,15 @@ public class ProductServiceImplement implements ProductService{
 		
 	}
 
-	
+	public List<Product> LoadProductAll() {
+		return productDAO.LoadProductAll();
+	}
 
+	public List<Product> LoadProductMen() {
+		return productDAO.LoadProductMen();
+	}
+
+	public List<Product> LoadProductWomen() {
+		return productDAO.LoadProductWomen();
+	}
 }

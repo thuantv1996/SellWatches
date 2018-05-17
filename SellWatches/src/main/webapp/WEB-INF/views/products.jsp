@@ -8,6 +8,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <%@ page language="java" contentType="text/html; charset=utf-8"
   pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix = "fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +22,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="container">
 			<div class="breadcrumbs-main">
 				<ol class="breadcrumb">
-					<li><a href="index.html">Home</a></li>
-					<li class="active">New Products</li>
+					<li><a href="<c:url value="/" />">Home</a></li>
+					<c:choose>
+						<c:when test="${productCategoryViewModel.getCateKey().equals('All')}">
+							<li class="active">New Products</li>
+						</c:when>
+						<c:when test="${productCategoryViewModel.getCateKey().equals('Men')}">
+							<li class="active">Men</li>
+						</c:when>
+						<c:when test="${productCategoryViewModel.getCateKey().equals('Women')}">
+							<li class="active">Women</li>
+						</c:when>
+					</c:choose>
+					
 				</ol>
 			</div>
 		</div>
@@ -32,171 +44,87 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="prdt"> 
 		<div class="container">
 			<div class="prdt-top">
-				<div class="col-md-9 prdt-left">
+				<div class="col-md-12 prdt-left">
 					<div class="product-one">
-						<div class="col-md-4 product-left p-left">
-							<div class="product-main simpleCart_shelfItem">
-								<a href="single.html" class="mask"><img class="img-responsive zoom-img" src="<c:url value="/resources/images/p-1.png" />" alt="" /></a>
-								<div class="product-bottom">
-									<h3>Smart Watches</h3>
-									<p>Explore Now</p>
-									<h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ 329</span></h4>
-								</div>
-								<div class="srch srch1">
-									<span>-50%</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 product-left p-left">
-							<div class="product-main simpleCart_shelfItem">
-								<a href="single.html" class="mask"><img class="img-responsive zoom-img" src="<c:url value="/resources/images/p-2.png" />" alt="" /></a>
-								<div class="product-bottom">
-									<h3>Smart Watches</h3>
-									<p>Explore Now</p>
-									<h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ 329</span></h4>
-								</div>
-								<div class="srch srch1">
-									<span>-50%</span>
+						<c:forEach var="listPr" items="${listProducts.subList((productCategoryViewModel.getIndex() - 1) * productCategoryViewModel.getPageSize(), ((productCategoryViewModel.getIndex() - 1) * productCategoryViewModel.getPageSize()) + 4)}">
+							${listPr.getId()}
+							<div class="col-md-3 product-left p-left">
+								<div class="product-main simpleCart_shelfItem">
+									<a href="single.html" class="mask"><img class="img-responsive zoom-img" src="<c:url value="/resources/images/HINHLON/${listPr.getBigImage()}" />" alt="" /></a>
+									<div class="product-bottom">
+										<h3>${listPr.getNameProduct()}</h3>
+										<p>Explore Now</p>
+										<h4>
+											<a class="item_add" href="#"><i></i></a> 
+											<span class=" item_price"><fmt:formatNumber type="number" pattern="###,###" value="${listPr.getPrice()}" /> VNĐ</span>
+										</h4>
+									</div>
+									<div class="srch srch1">
+										<span>-0%</span>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-4 product-left p-left">
-							<div class="product-main simpleCart_shelfItem">
-								<a href="single.html" class="mask"><img class="img-responsive zoom-img" src="<c:url value="/resources/images/p-3.png" />" alt="" /></a>
-								<div class="product-bottom">
-									<h3>Smart Watches</h3>
-									<p>Explore Now</p>
-									<h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ 329</span></h4>
-								</div>
-								<div class="srch srch1">
-									<span>-50%</span>
-								</div>
-							</div>
-						</div>
+						</c:forEach>
 						<div class="clearfix"></div>
 					</div>
 					<div class="product-one">
-						<div class="col-md-4 product-left p-left">
-							<div class="product-main simpleCart_shelfItem">
-								<a href="single.html" class="mask"><img class="img-responsive zoom-img" src="<c:url value="/resources/images/p-4.png" />" alt="" /></a>
-								<div class="product-bottom">
-									<h3>Smart Watches</h3>
-									<p>Explore Now</p>
-									<h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ 329</span></h4>
-								</div>
-								<div class="srch srch1">
-									<span>-50%</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 product-left p-left">
-							<div class="product-main simpleCart_shelfItem">
-								<a href="single.html" class="mask"><img class="img-responsive zoom-img" src="<c:url value="/resources/images/p-5.png" />" alt="" /></a>
-								<div class="product-bottom">
-									<h3>Smart Watches</h3>
-									<p>Explore Now</p>
-									<h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ 329</span></h4>
-								</div>
-								<div class="srch srch1">
-									<span>-50%</span>
+						<c:forEach var="listPr" items="${listProducts.subList(((productCategoryViewModel.getIndex() - 1) * productCategoryViewModel.getPageSize()) + 4, ((productCategoryViewModel.getIndex() - 1) * productCategoryViewModel.getPageSize() + 4) + 4)}">
+							${listPr.getId()}
+							<div class="col-md-3 product-left p-left">
+								<div class="product-main simpleCart_shelfItem">
+									<a href="single.html" class="mask"><img class="img-responsive zoom-img" src="<c:url value="/resources/images/HINHLON/${listPr.getBigImage()}" />" alt="" /></a>
+									<div class="product-bottom">
+										<h3>${listPr.getNameProduct()}</h3>
+										<p>Explore Now</p>
+										<h4><a class="item_add" href="#"><i></i></a> <span class=" item_price"><fmt:formatNumber type="number" pattern="###,###" value="${listPr.getPrice()}" /> VNĐ</span></h4>
+									</div>
+									<div class="srch srch1">
+										<span>-0%</span>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-4 product-left p-left">
-							<div class="product-main simpleCart_shelfItem">
-								<a href="single.html" class="mask"><img class="img-responsive zoom-img" src="<c:url value="/resources/images/p-6.png" />" alt="" /></a>
-								<div class="product-bottom">
-									<h3>Smart Watches</h3>
-									<p>Explore Now</p>
-									<h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ 329</span></h4>
-								</div>
-								<div class="srch srch1">
-									<span>-50%</span>
-								</div>
-							</div>
-						</div>
+						</c:forEach>
 						<div class="clearfix"></div>
 					</div>	
+					<!-- Phân trang sản phẩm -->
+					<c:choose>
+						<c:when test="${productCategoryViewModel.getTotalPage() > 1}">
+							<nav aria-label="Page navigation example">
+		                        <ul class="pagination" style="padding: 15px 15px 15px 15px">
+		                            <c:if test="${productCategoryViewModel.getIndex() > 1}">
+		                            	<li class="page-item">
+		                                    <a class="page-link" href="<c:url value='/Products?cateKey=${productCategoryViewModel.getCateKey()}&page=${productCategoryViewModel.getPrev()}' />" aria-label="Previous">
+		                                        <span aria-hidden="true">&laquo;</span>
+		                                        <span class="sr-only">Previous</span>
+		                                    </a>
+		                                </li>
+		                            </c:if>
+		                            <c:forEach begin='${productCategoryViewModel.getStartPageIndex()}' end='${productCategoryViewModel.getEndPageIndex()}' var="i">
+			                            <c:choose>
+			                            	<c:when test="${i == productCategoryViewModel.getIndex()}">
+			                            		<li class="page-item"><a class="page-link active" href="<c:url value='/Products?cateKey=${productCategoryViewModel.getCateKey()}&page=${i}' />">${i}</a></li>
+			                            	</c:when>
+			                            	<c:otherwise>
+			                            		<li class="page-item"><a class="page-link" href="<c:url value='/Products?cateKey=${productCategoryViewModel.getCateKey()}&page=${i}' />">${i}</a></li>
+			                            	</c:otherwise>
+			                            </c:choose>
+		                            </c:forEach>
+		                            <c:if test="${productCategoryViewModel.getIndex() != productCategoryViewModel.getTotalPage()}">
+		                            	<li class="page-item">
+		                                    <a class="page-link" href="<c:url value='/Products?cateKey=${productCategoryViewModel.getCateKey()}&page=${productCategoryViewModel.getNext()}' />" aria-label="Next">
+		                                        <span aria-hidden="true">&raquo;</span>
+		                                        <span class="sr-only">Next</span>
+		                                    </a>
+		                                </li>
+		                            </c:if>
+		                        </ul>
+		                    </nav>
+						</c:when>
+						<c:otherwise>
+							<span>Không có sản phẩm nào</span>
+						</c:otherwise>
+					</c:choose>
 				</div>	
-				<div class="col-md-3 prdt-right">
-					<div class="w_sidebar">
-						<section  class="sky-form">
-							<h4>Catogories</h4>
-							<div class="row1 scroll-pane">
-								<div class="col col-4">
-									<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>All Accessories</label>
-								</div>
-								<div class="col col-4">								
-									<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Women Watches</label>
-									<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Kids Watches</label>
-									<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Men Watches</label>			
-								</div>
-							</div>
-						</section>
-						<section  class="sky-form">
-							<h4>Brand</h4>
-							<div class="row1 row2 scroll-pane">
-								<div class="col col-4">
-									<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>kurtas</label>
-								</div>
-								<div class="col col-4">
-									<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Sonata</label>
-									<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Titan</label>
-									<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Casio</label>
-									<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Omax</label>
-									<label class="checkbox"><input type="checkbox" name="checkbox" ><i></i>shree</label>
-									<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Fastrack</label>
-									<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Sports</label>
-									<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Fossil</label>
-									<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Maxima</label>
-									<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Yepme</label>
-									<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Citizen</label>
-									<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Diesel</label>									
-								</div>
-							</div>
-						</section>
-						<section class="sky-form">
-							<h4>Colour</h4>
-								<ul class="w_nav2">
-									<li><a class="color1" href="#"></a></li>
-									<li><a class="color2" href="#"></a></li>
-									<li><a class="color3" href="#"></a></li>
-									<li><a class="color4" href="#"></a></li>
-									<li><a class="color5" href="#"></a></li>
-									<li><a class="color6" href="#"></a></li>
-									<li><a class="color7" href="#"></a></li>
-									<li><a class="color8" href="#"></a></li>
-									<li><a class="color9" href="#"></a></li>
-									<li><a class="color10" href="#"></a></li>
-									<li><a class="color12" href="#"></a></li>
-									<li><a class="color13" href="#"></a></li>
-									<li><a class="color14" href="#"></a></li>
-									<li><a class="color15" href="#"></a></li>
-									<li><a class="color5" href="#"></a></li>
-									<li><a class="color6" href="#"></a></li>
-									<li><a class="color7" href="#"></a></li>
-									<li><a class="color8" href="#"></a></li>
-									<li><a class="color9" href="#"></a></li>
-									<li><a class="color10" href="#"></a></li>
-								</ul>
-						</section>
-						<section class="sky-form">
-							<h4>discount</h4>
-								<div class="row1 row2 scroll-pane">
-									<div class="col col-4">
-										<label class="radio"><input type="radio" name="radio" checked=""><i></i>60 % and above</label>
-										<label class="radio"><input type="radio" name="radio"><i></i>50 % and above</label>
-										<label class="radio"><input type="radio" name="radio"><i></i>40 % and above</label>
-									</div>
-									<div class="col col-4">
-										<label class="radio"><input type="radio" name="radio"><i></i>30 % and above</label>
-										<label class="radio"><input type="radio" name="radio"><i></i>20 % and above</label>
-										<label class="radio"><input type="radio" name="radio"><i></i>10 % and above</label>
-									</div>
-								</div>						
-						</section>
-					</div>
-				</div>
 				<div class="clearfix"></div>
 			</div>
 		</div>
