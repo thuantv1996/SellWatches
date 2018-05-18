@@ -52,6 +52,8 @@ public class ProductsController {
 		productCategoryViewModel.setStartPageIndex(Math.max(1, productCategoryViewModel.getIndex() - productCategoryViewModel.getPageDislayNumber() / 2));
 		productCategoryViewModel.setEndPageIndex(Math.min(productCategoryViewModel.getTotalPage(), productCategoryViewModel.getIndex() + productCategoryViewModel.getPageDislayNumber() / 2));
 		
+		productCategoryViewModel.setIndexSublist((productCategoryViewModel.getIndex() - 1) * productCategoryViewModel.getPageSize());
+		
 		return "products";
 	}
 }

@@ -15,7 +15,14 @@ public class ProductCategoryViewModel {
 	public int pageDislayNumber;
 	public int startPageIndex;
 	public int endPageIndex;
+	public int indexSublist;
 	
+	public int getIndexSublist() {
+		return indexSublist;
+	}
+	public void setIndexSublist(int indexSublist) {
+		this.indexSublist = indexSublist;
+	}
 	public int getStartPageIndex() {
 		return startPageIndex;
 	}

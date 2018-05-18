@@ -46,8 +46,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="prdt-top">
 				<div class="col-md-12 prdt-left">
 					<div class="product-one">
-						<c:forEach var="listPr" items="${listProducts.subList((productCategoryViewModel.getIndex() - 1) * productCategoryViewModel.getPageSize(), ((productCategoryViewModel.getIndex() - 1) * productCategoryViewModel.getPageSize()) + 4)}">
-							${listPr.getId()}
+						<c:forEach var="listPr" items="${listProducts.subList(Math.max(Integer.parseInt('0'), Integer.parseInt(productCategoryViewModel.getIndexSublist())), Math.min(Integer.parseInt(listProducts.size()), Integer.parseInt(productCategoryViewModel.getIndexSublist() + 4)))}">
 							<div class="col-md-3 product-left p-left">
 								<div class="product-main simpleCart_shelfItem">
 									<a href="single.html" class="mask"><img class="img-responsive zoom-img" src="<c:url value="/resources/images/HINHLON/${listPr.getBigImage()}" />" alt="" /></a>
@@ -68,8 +67,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<div class="clearfix"></div>
 					</div>
 					<div class="product-one">
-						<c:forEach var="listPr" items="${listProducts.subList(((productCategoryViewModel.getIndex() - 1) * productCategoryViewModel.getPageSize()) + 4, ((productCategoryViewModel.getIndex() - 1) * productCategoryViewModel.getPageSize() + 4) + 4)}">
-							${listPr.getId()}
+						<c:forEach var="listPr" items="${listProducts.subList(Math.min(Integer.parseInt(listProducts.size()), Integer.parseInt(productCategoryViewModel.getIndexSublist() + 4)), Math.min(Integer.parseInt(listProducts.size()), Integer.parseInt(productCategoryViewModel.getIndexSublist() + 8)))}">
 							<div class="col-md-3 product-left p-left">
 								<div class="product-main simpleCart_shelfItem">
 									<a href="single.html" class="mask"><img class="img-responsive zoom-img" src="<c:url value="/resources/images/HINHLON/${listPr.getBigImage()}" />" alt="" /></a>
