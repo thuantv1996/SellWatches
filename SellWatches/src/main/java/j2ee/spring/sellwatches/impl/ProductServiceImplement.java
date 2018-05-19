@@ -1,7 +1,5 @@
 package j2ee.spring.sellwatches.impl;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,8 +96,7 @@ public class ProductServiceImplement implements ProductService {
 		// Tìm khuyến mãi cho từng sản phẩm
 		for (Product item : lProduct) {
 			int idProduct = item.getId();
-			if(idProduct == id)
-			{
+			if (idProduct == id) {
 				continue;
 			}
 			int promotion = productDAO.getPromotion(idProduct);
@@ -108,8 +105,7 @@ public class ProductServiceImplement implements ProductService {
 			productOnView.setPromotion(promotion);
 			result.add(productOnView);
 			n--;
-			if(n==0)
-			{
+			if (n == 0) {
 				break;
 			}
 		}
@@ -126,4 +122,15 @@ public class ProductServiceImplement implements ProductService {
 		return result;
 	}
 
+	public List<Product> LoadProductAll() {
+		return productDAO.LoadProductAll();
+	}
+
+	public List<Product> LoadProductMen() {
+		return productDAO.LoadProductMen();
+	}
+
+	public List<Product> LoadProductWomen() {
+		return productDAO.LoadProductWomen();
+	}
 }

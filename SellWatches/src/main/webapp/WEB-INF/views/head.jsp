@@ -21,3 +21,4 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script>$(document).ready(function(){$(".memenu").memenu();});</script>	
 <!--dropdown-->
 <script src="<c:url value="/resources/js/jquery.easydropdown.js" /> "></script>
+<link href="<c:url value="/resources/css/custom.css" />" rel="stylesheet" type="text/css" media="all" />

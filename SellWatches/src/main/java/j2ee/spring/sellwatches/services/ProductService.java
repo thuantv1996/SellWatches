@@ -21,4 +21,10 @@ public interface ProductService extends MSSQLService<Product>{
 
 	ProductOnView getProductOnView(int id);
 	
+	List<Product> LoadProductAll();
+	
+	List<Product> LoadProductMen();
+	
+	List<Product> LoadProductWomen();
+	
 }
