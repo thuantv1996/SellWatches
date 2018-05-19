@@ -4,10 +4,11 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<% %>
+<%@ taglib prefix ="fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,7 +67,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								src="<c:url value="/resources/images/HINHLON/${item.getBigImage()}" />" alt="" />
 							<figcaption>
 								<h2>${item.getNameProduct()}</h2>
-								<p>${item.getDescription()}</p>
+								<p>${item.getDescription()} </p>
 							</figcaption>
 						</figure>
 					</div>
@@ -81,153 +82,49 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="container">
 			<div class="product-top">
 				<div class="product-one">
-					<div class="col-md-3 product-left">
-						<div class="product-main simpleCart_shelfItem">
-							<a href="<c:url value="/ProductDetail" />" class="mask"><img
-								class="img-responsive zoom-img"
-								src="<c:url value="/resources/images/p-1.png" />" alt="" /></a>
-							<div class="product-bottom">
-								<h3>Smart Watches</h3>
-								<p>Explore Now</p>
-								<h4>
-									<a class="item_add" href="#"><i></i></a> <span
-										class=" item_price">$ 329</span>
-								</h4>
-							</div>
-							<div class="srch">
-								<span>-50%</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 product-left">
-						<div class="product-main simpleCart_shelfItem">
-							<a href="<c:url value="/ProductDetail" />" class="mask"><img
-								class="img-responsive zoom-img"
-								src="<c:url value="/resources/images/p-2.png" />" alt="" /></a>
-							<div class="product-bottom">
-								<h3>Smart Watches</h3>
-								<p>Explore Now</p>
-								<h4>
-									<a class="item_add" href="#"><i></i></a> <span
-										class=" item_price">$ 329</span>
-								</h4>
-							</div>
-							<div class="srch">
-								<span>-50%</span>
+					<c:forEach var="item" items="${lstNewProduct.subList(0, 4)}">
+						<div class="col-md-3 product-left">
+							<div class="product-main simpleCart_shelfItem">
+								<a href="<c:url value="/ProductDetail?id=${item.getProduct().getId()}" />" class="mask"><img
+									class="img-responsive zoom-img"
+									src="<c:url value="/resources/images/HINHLON/${item.getProduct().getBigImage()}" />" alt="" /></a>
+								<div class="product-bottom">
+									<h3>${item.getProduct().getNameProduct()}</h3>
+									<p>Explore Now</p>
+									<h4>
+										<a class="item_add" href="#"><i></i></a> <span
+											class=" item_price"><fmt:formatNumber type="number" pattern="###,###" value="${item.getProduct().getPrice()*(100 -item.getPromotion())}" /> VNĐ</span>
+									</h4>
+								</div>
+								<div class="srch">
+									<span>-${item.getPromotion()}%</span>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-3 product-left">
-						<div class="product-main simpleCart_shelfItem">
-							<a href="<c:url value="/ProductDetail" />" class="mask"><img
-								class="img-responsive zoom-img"
-								src="<c:url value="/resources/images/p-3.png" />" alt="" /></a>
-							<div class="product-bottom">
-								<h3>Smart Watches</h3>
-								<p>Explore Now</p>
-								<h4>
-									<a class="item_add" href="#"><i></i></a> <span
-										class=" item_price">$ 329</span>
-								</h4>
-							</div>
-							<div class="srch">
-								<span>-50%</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 product-left">
-						<div class="product-main simpleCart_shelfItem">
-							<a href="<c:url value="/ProductDetail" />" class="mask"><img
-								class="img-responsive zoom-img"
-								src="<c:url value="/resources/images/p-4.png" />" alt="" /></a>
-							<div class="product-bottom">
-								<h3>Smart Watches</h3>
-								<p>Explore Now</p>
-								<h4>
-									<a class="item_add" href="#"><i></i></a> <span
-										class=" item_price">$ 329</span>
-								</h4>
-							</div>
-							<div class="srch">
-								<span>-50%</span>
-							</div>
-						</div>
-					</div>
+					</c:forEach>			
 					<div class="clearfix"></div>
 				</div>
 				<div class="product-one">
-					<div class="col-md-3 product-left">
-						<div class="product-main simpleCart_shelfItem">
-							<a href="<c:url value="/ProductDetail" />" class="mask"><img
-								class="img-responsive zoom-img"
-								src="<c:url value="/resources/images/p-5.png" />" alt="" /></a>
-							<div class="product-bottom">
-								<h3>Smart Watches</h3>
-								<p>Explore Now</p>
-								<h4>
-									<a class="item_add" href="#"><i></i></a> <span
-										class=" item_price">$ 329</span>
-								</h4>
-							</div>
-							<div class="srch">
-								<span>-50%</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 product-left">
-						<div class="product-main simpleCart_shelfItem">
-							<a href="<c:url value="/ProductDetail" />" class="mask"><img
-								class="img-responsive zoom-img"
-								src="<c:url value="/resources/images/p-6.png" />" alt="" /></a>
-							<div class="product-bottom">
-								<h3>Smart Watches</h3>
-								<p>Explore Now</p>
-								<h4>
-									<a class="item_add" href="#"><i></i></a> <span
-										class=" item_price">$ 329</span>
-								</h4>
-							</div>
-							<div class="srch">
-								<span>-50%</span>
+					<c:forEach var="item" items="${lstNewProduct.subList(4, 8)}">
+						<div class="col-md-3 product-left">
+							<div class="product-main simpleCart_shelfItem">
+								<a href="<c:url value="/ProductDetail?id=${item.getProduct().getId()}" />" class="mask"><img
+									class="img-responsive zoom-img"
+									src="<c:url value="/resources/images/HINHLON/${item.getProduct().getBigImage()}" />" alt="" /></a>
+								<div class="product-bottom">
+									<h3>${item.getProduct().getNameProduct()}</h3>
+									<p>Explore Now</p>
+									<h4>
+										<a class="item_add" href="#"><i></i></a> <span
+											class=" item_price"><fmt:formatNumber type="number" pattern="###,###" value="${item.getProduct().getPrice()*(100 -item.getPromotion())}" /> VNĐ</span>
+									</h4>
+								</div>
+								<div class="srch">
+									<span>-${item.getPromotion()}%</span>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-3 product-left">
-						<div class="product-main simpleCart_shelfItem">
-							<a href="<c:url value="/ProductDetail" />" class="mask"><img
-								class="img-responsive zoom-img"
-								src="<c:url value="/resources/images/p-7.png" />" alt="" /></a>
-							<div class="product-bottom">
-								<h3>Smart Watches</h3>
-								<p>Explore Now</p>
-								<h4>
-									<a class="item_add" href="#"><i></i></a> <span
-										class=" item_price">$ 329</span>
-								</h4>
-							</div>
-							<div class="srch">
-								<span>-50%</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 product-left">
-						<div class="product-main simpleCart_shelfItem">
-							<a href="<c:url value="/ProductDetail" />" class="mask"><img
-								class="img-responsive zoom-img"
-								src="<c:url value="/resources/images/p-8.png" />" alt="" /></a>
-							<div class="product-bottom">
-								<h3>Smart Watches</h3>
-								<p>Explore Now</p>
-								<h4>
-									<a class="item_add" href="#"><i></i></a> <span
-										class=" item_price">$ 329</span>
-								</h4>
-							</div>
-							<div class="srch">
-								<span>-50%</span>
-							</div>
-						</div>
-					</div>
+					</c:forEach>	
 					<div class="clearfix"></div>
 				</div>
 			</div>

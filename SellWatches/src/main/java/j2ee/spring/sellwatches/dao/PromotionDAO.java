@@ -15,7 +15,7 @@ import j2ee.spring.sellwatches.services.MSSQLService;
 @Component
 public class PromotionDAO{
 	private Session session;
-	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+	
 	public List<Promotion> select() {
 		session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {

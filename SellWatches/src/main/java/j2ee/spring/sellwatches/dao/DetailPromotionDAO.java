@@ -7,6 +7,7 @@ import javax.persistence.Query;
 import org.hibernate.Session;
 
 import j2ee.spring.sellwatches.models.DetailPromotion;
+import j2ee.spring.sellwatches.models.Product;
 
 public class DetailPromotionDAO {
 	private Session session;
@@ -102,6 +103,26 @@ public class DetailPromotionDAO {
 			}
 			session.getTransaction().commit();
 			return result.get(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+			return null;
+		}
+	}
+	public List<DetailPromotion> findById(Product product) {
+		session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.getTransaction().begin();
+			Query query = session.createQuery("from DetailPromotion where product = :product");
+			query.setParameter("product", product);
+			@SuppressWarnings("unchecked")
+			List<DetailPromotion> result = query.getResultList();
+			if (result.size() > 0) {
+				// write log
+				System.out.println("find excute!");
+			}
+			session.getTransaction().commit();
+			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();

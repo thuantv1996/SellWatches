@@ -13,12 +13,14 @@ import javax.persistence.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
 
+import j2ee.spring.sellwatches.models.DetailPromotion;
 import j2ee.spring.sellwatches.models.Product;
 import j2ee.spring.sellwatches.models.Promotion;
+import j2ee.spring.sellwatches.models.Trademark;
 
 @Component
 public class ProductDAO {
-	
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 	
 	private Session session;
 
@@ -171,12 +173,41 @@ public class ProductDAO {
 	}
 
 	public int getPromotion(int idProduct) {
-		// Lấy danh sách promotion phù hợp
-		PromotionDAO promotionDAO = new PromotionDAO();
-		List<Promotion> promotions  = promotionDAO.findNow();
-		// Tìm danh sách chi tiết
-		
-		// Lấy ra khuyến mãi cao nhất
-		return 0;
+		DetailPromotionDAO detailPromotionsDAO = new DetailPromotionDAO();
+		Product product= new Product();
+		product.setId(idProduct);
+		List<DetailPromotion> detailPromotions = detailPromotionsDAO.findById(product);
+		int maxContent = 0 ;
+		for (DetailPromotion detailPromotion : detailPromotions) {
+			// Kiem tra ngay bat dau va ket thuc
+			Timestamp current = new Timestamp(System.currentTimeMillis());
+			if(detailPromotion.getPromotion().getBeginDay().before(current) && 
+					detailPromotion.getPromotion().getEndDay().after(current))
+			{
+				// kiem tra phan tram khuyen mai
+				if(detailPromotion.getContent()>maxContent)
+				{
+					maxContent = detailPromotion.getContent();
+				}
+			}
+		}
+		return maxContent;
+	}
+
+	public List<Product> select(Trademark trademark) {
+		session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.getTransaction().begin();
+			Query query = session.createQuery("from Product where trademark = :trademark");
+			query.setParameter("trademark", trademark);
+			@SuppressWarnings("unchecked")
+			List<Product> result = query.getResultList();
+			session.getTransaction().commit();
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+			return null;
+		}
 	}
 }
