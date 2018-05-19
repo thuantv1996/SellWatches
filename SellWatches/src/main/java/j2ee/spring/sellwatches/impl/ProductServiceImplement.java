@@ -133,4 +133,20 @@ public class ProductServiceImplement implements ProductService {
 	public List<Product> LoadProductWomen() {
 		return productDAO.LoadProductWomen();
 	}
+
+	public List<ProductOnView> findByKey(String key) {		
+		List<ProductOnView> result = new ArrayList<ProductOnView>();
+		// lấy danh sách sản phẩm với tên chứa key
+		List<Product> products = productDAO.getListProductWithKey(key);
+		// lấy ra khuyen mai của từng sp
+		for (Product product : products) {
+			int promotion = productDAO.getPromotion(product.getId());
+			ProductOnView item = new ProductOnView();
+			item.setProduct(product);
+			item.setPromotion(promotion);
+			result.add(item);
+		}
+		// trả về
+		return result;
+	}
 }

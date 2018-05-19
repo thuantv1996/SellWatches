@@ -255,4 +255,21 @@ public class ProductDAO {
 			return null;
 		}
 	}
+
+	public List<Product> getListProductWithKey(String key) {
+		session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.getTransaction().begin();
+			Query query = session.createQuery("from Product where nameProduct like :key");
+			query.setParameter("key", "%"+key+"%");
+			@SuppressWarnings("unchecked")
+			List<Product> result = query.getResultList();
+			session.getTransaction().commit();
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+			return null;
+		}
+	}
 }

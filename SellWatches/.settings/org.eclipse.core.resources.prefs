@@ -2,6 +2,7 @@ eclipse.preferences.version=1
 encoding//src/main/java/j2ee/spring/sellwatches/controllers/AccountController.java=UTF-8
 encoding//src/main/java/j2ee/spring/sellwatches/controllers/Home.java=UTF-8
 encoding//src/main/java/j2ee/spring/sellwatches/controllers/ProductDetail.java=UTF-8
+encoding//src/main/java/j2ee/spring/sellwatches/controllers/SearchController.java=UTF-8
 encoding//src/main/java/j2ee/spring/sellwatches/dao/AccountDAO.java=UTF-8
 encoding//src/main/java/j2ee/spring/sellwatches/dao/ProductDAO.java=UTF-8
 encoding//src/main/java/j2ee/spring/sellwatches/impl/ProductServiceImplement.java=UTF-8
@@ -11,3 +12,4 @@ encoding//src/main/java/j2ee/spring/sellwatches/viewmodel/RegisterViewModel.java
 encoding//src/main/resources/message_en.properties=UTF-8
 encoding//src/main/webapp/WEB-INF/views/productdetail.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/register.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/search.jsp=UTF-8

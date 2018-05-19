@@ -26,5 +26,7 @@ public interface ProductService extends MSSQLService<Product>{
 	List<Product> LoadProductMen();
 	
 	List<Product> LoadProductWomen();
+
+	List<ProductOnView> findByKey(String key);
 	
 }
