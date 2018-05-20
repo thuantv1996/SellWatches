@@ -35,26 +35,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="contact-text">
 				<div class="col-md-3 contact-left">
 						<div class="address">
-							<h5>Address</h5>
-							<p>The company name, 
-							<span>Lorem ipsum dolor,</span>
-							Glasglow Dr 40 Fe 72.</p>
+							<h5>Địa chỉ</h5>
+							<p>Watch shop national, 
+							<span>Trung tâm thương mại Bitexco,</span>
+							Hàm nghi, Quận 1, Thành phố Hồ Chí Minh.</p>
 						</div>
 						<div class="address">
-							<h5>Address1</h5>
+							<h5>Thông tin liên hệ</h5>
 							<p>Tel:1115550001, 
 							<span>Fax:190-4509-494</span>
-							Email: <a href="mailto:example@email.com">contact@example.com</a></p>
+							Email: <a href="mailto:example@email.com">tuvanthuan1996@gmail.com</a></p>
 						</div>
 					</div>
 					<div class="col-md-9 contact-right">
-						<form>
-							<input type="text" placeholder="Name">
-							<input type="text" placeholder="Phone">
-							<input type="text"  placeholder="Email">
-							<textarea placeholder="Message" required=""></textarea>
+						<form method="post" action="/SellWatches/send">
+							<input type="text" placeholder="Name" name = "name" required/>
+							<input type="text" placeholder="Phone" name = "phone" required/>
+							<input type="email"  placeholder="Email" name = "email" required/>
+							<textarea placeholder="Message" required name = "message"></textarea>
 							<div class="submit-btn">
-								<input type="submit" value="SUBMIT">
+								<input type="submit" value="SEND TO US">
 							</div>
 						</form>
 					</div>	

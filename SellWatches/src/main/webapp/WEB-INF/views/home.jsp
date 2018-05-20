@@ -93,7 +93,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									<p>Explore Now</p>
 									<h4>
 										<a class="item_add" href="#"><i></i></a> <span
-											class=" item_price"><fmt:formatNumber type="number" pattern="###,###" value="${item.getProduct().getPrice()*(100 -item.getPromotion())}" /> VNĐ</span>
+											class=" item_price"><fmt:formatNumber type="number" pattern="###,###" value="${item.getProduct().getPrice()*(100 -item.getPromotion())/100}" /> VNĐ</span>
 									</h4>
 								</div>
 								<div class="srch">
@@ -116,7 +116,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									<p>Explore Now</p>
 									<h4>
 										<a class="item_add" href="#"><i></i></a> <span
-											class=" item_price"><fmt:formatNumber type="number" pattern="###,###" value="${item.getProduct().getPrice()*(100 -item.getPromotion())}" /> VNĐ</span>
+											class=" item_price"><fmt:formatNumber type="number" pattern="###,###" value="${item.getProduct().getPrice()*(100 -item.getPromotion())/100}" /> VNĐ</span>
 									</h4>
 								</div>
 								<div class="srch">
