@@ -32,8 +32,10 @@
 					<div class="cart box_1">
 						<a href="<c:url value="/Checkout" />">
 							<div class="total">
-								<span class="simpleCart_total"></span></div>
-								<img src="<c:url value="/resources/images/cart-1.png" />" alt="" />
+								<span class="simpleCart_total"></span>
+							</div>
+							<img src="<c:url value="/resources/images/cart-1.png" />" alt="" />
+							<span class="quantityCart">${quantityCart}</span>
 						</a>
 						<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
 						<div class="clearfix"> </div>

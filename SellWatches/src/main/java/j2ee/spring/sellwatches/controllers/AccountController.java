@@ -44,7 +44,7 @@ public class AccountController {
 	public String Login(@Valid @ModelAttribute LoginViewModel loginViewModel, BindingResult result, ModelMap modelMap) {
 		
 //		RedirectView redirectLogin = new RedirectView("/Login");
-		if(result.hasErrors() ) {
+		if(result.hasErrors()) {
 			return "account";
 		}
 		

@@ -19,3 +19,40 @@ div.userMenu span a {
     font-weight: 400;
     font-family: 'Lato-Regular'; 
 }
+
+.quantityCart {
+	color: white;
+	font-family: 'Lato', sans-serif;
+    font-size: 12px;
+}
+
+ul.cart-header img {
+	width: 80px;
+	height: 65px;
+}
+
+ul.cart-header li input {
+	background-color: white;
+    width: 75px;
+    height: 25px;
+}
+
+.txtToTal {
+	font-size: 1.14286em;
+    color: #4b4b4b;
+}
+
+.txtVND {
+    font-size: 0.85714em;
+    vertical-align: 0.2em;
+    margin-right: 0.5em;
+    color: #969696;
+}
+
+.txtPrice {
+    font-size: 1.71429em;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    color: #4b4b4b;
+    line-height: 1em;
+}

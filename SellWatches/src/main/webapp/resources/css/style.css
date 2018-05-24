@@ -1489,7 +1489,6 @@ a.mask {
 	height: 28px;
 	position: absolute;
     right: 5px;
-    top: 10px;
 	-webkit-transition: color 0.2s ease-in-out;
 	-moz-transition: color 0.2s ease-in-out;
 	-o-transition: color 0.2s ease-in-out;
@@ -1503,9 +1502,24 @@ ul.unit {
     border: 1px solid #BCBBBB;
     padding: 10px 10px;
 }
-ul.unit li {
+ul.unit .li_Item{
     display: inline-block;
-    width: 25%;
+    width: 20%;
+    float: left;
+}
+ul.unit .li_ProductName{
+    display: inline-block;
+    width: 30%;
+    float: left;
+}
+ul.unit .li_Price{
+    display: inline-block;
+    width: 30%;
+    float: left;
+}
+ul.unit .li_Quantity{
+    display: inline-block;
+    width: 20%;
     float: left;
 }
 ul.cart-header li p,ul.cart-header1 li p,ul.cart-header2 li p{
@@ -1521,6 +1535,9 @@ ul.unit li span{
 	text-align:center;
 }
 ul.cart-header, ul.cart-header1 {
+	display: flex;
+	align-items: center;
+	width: 100%;
     padding: 1em;
     background: #f8f8f8;
     border-bottom: 1px solid #181b2a;
@@ -1530,16 +1547,39 @@ ul.cart-header2{
 	padding:1em;
 	background:#f8f8f8;
 }
-ul.cart-header li, ul.cart-header1 li, ul.cart-header2 li {
+ul.cart-header .cart_Img{
     display: inline-block;
-    width: 25%;
+    width: 20%;
     float: left;
+    margin: 0px!important;
+    font-family: 'BreeSerif-Regular';
+}
+ul.cart-header .cart_ProductName{
+    display: inline-block;
+    width: 30%;
+    float: left;
+    margin: 0px!important;
+    font-family: 'BreeSerif-Regular';
+}
+ul.cart-header .cart_Price{
+    display: inline-block;
+    width: 30%;
+    float: left;
+    margin: 0px!important;
+    font-family: 'BreeSerif-Regular';
+}
+ul.cart-header .cart_Quantity{
+    display: inline-block;
+    width: 20%;
+    float: left;
+    margin: 0px!important;
+    font-family: 'BreeSerif-Regular';
 }
 ul.cart-header li span,ul.cart-header1 li span,ul.cart-header2 li span{
-	margin: 2.3em 0 0;
+	margin: 0!important;
 	display: block;
 	color:#000;
-	font-size: 1.05em;
+	font-size: 14px!important;
 	text-align: left;
 }
 span.cost {
@@ -1547,13 +1587,10 @@ span.cost {
     margin-top: 1.4em !important;
 }
 .in-check {
-	margin-top: 2%;
+	margin-top: 5%;
 }
 .cart-header,.cart-header1,.cart-header2{
 	position:relative;
-}
-.cart-items {
-	padding: 0 1em;
 }
 .cart-items h3 {
     font-size: 2em;
@@ -1682,6 +1719,7 @@ a.add-cart {
     text-transform: uppercase;
     margin-top: 2em;
     display: inline-block;
+    cursor: pointer;
 }
 a.add-cart:hover {
 	background: #73b6e1;

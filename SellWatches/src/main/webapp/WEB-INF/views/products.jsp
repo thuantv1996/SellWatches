@@ -49,7 +49,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<c:forEach var="listPr" items="${listProducts.subList(Math.max(Integer.parseInt('0'), Integer.parseInt(productCategoryViewModel.getIndexSublist())), Math.min(Integer.parseInt(listProducts.size()), Integer.parseInt(productCategoryViewModel.getIndexSublist() + 4)))}">
 							<div class="col-md-3 product-left p-left">
 								<div class="product-main simpleCart_shelfItem">
-									<a href="single.html" class="mask"><img class="img-responsive zoom-img" src="<c:url value="/resources/images/HINHLON/${listPr.getBigImage()}" />" alt="" /></a>
+									<a href='<c:url value="/ProductDetail?id=${listPr.getId()}" />' class="mask"><img class="img-responsive zoom-img" src="<c:url value="/resources/images/HINHLON/${listPr.getBigImage()}" />" alt="" /></a>
 									<div class="product-bottom">
 										<h3>${listPr.getNameProduct()}</h3>
 										<p>Explore Now</p>

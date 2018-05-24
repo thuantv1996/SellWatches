@@ -59,7 +59,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="col-md-5 single-top-left">	
 						<div class="flexslider">
 							  <ul class="slides">
-								<li data-thumb="<c:url value="/resources/images/HINHNHO/${viewModel.getProduct().getProduct().getSmallImage()}/1.jpg" />">
+								<li id="img-product" data-img="${viewModel.getProduct().getProduct().getBigImage()}" data-thumb="<c:url value="/resources/images/HINHNHO/${viewModel.getProduct().getProduct().getSmallImage()}/1.jpg" />">
 									<div class="thumb-image"> <img src="<c:url value="/resources/images/HINHNHO/${viewModel.getProduct().getProduct().getSmallImage()}/1.jpg" />" data-imagezoom="true" class="img-responsive" alt=""/> </div>
 								</li>
 								<li data-thumb="<c:url value="/resources/images/HINHNHO/${viewModel.getProduct().getProduct().getSmallImage()}/2.jpg" />">
@@ -87,7 +87,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</div>	
 					<div class="col-md-7 single-top-right">
 						<div class="single-para simpleCart_shelfItem">
-						<h2>${viewModel.getProduct().getProduct().getNameProduct()}</h2>
+						<h2 id="data-productname" data-id="${viewModel.getProduct().getProduct().getId()}">${viewModel.getProduct().getProduct().getNameProduct()}</h2>
 							<div class="star-on">
 								<ul class="star-footer">
 										<li><a href="#"><i> </i></a></li>
@@ -102,8 +102,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								</div>
 							<div class="clearfix"> </div>
 							</div>
-							
-							<h5 class="item_price"><fmt:formatNumber type="number" pattern="###,###" value="${viewModel.getProduct().getProduct().getPrice()*(100 - viewModel.getProduct().getPromotion())/100}" /> VNĐ</h5>
+							<h5 class="item_price" data-price="<fmt:formatNumber type="number" groupingUsed = "false" value="${viewModel.getProduct().getProduct().getPrice()*(100 - viewModel.getProduct().getPromotion())/100}" />"><fmt:formatNumber type="number" pattern="###,###" value="${viewModel.getProduct().getProduct().getPrice()*(100 - viewModel.getProduct().getPromotion())/100}" /> VNĐ</h5>
 							<p>${viewModel.getProduct().getProduct().getDescription()}</p>
 							<ul class="tag-men">
 								<li><span>TAG</span>
@@ -111,8 +110,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								<li><span>SKU</span>
 								<span class="women1">: ${viewModel.getProduct().getProduct().getTrademark().getName()}</span></li>
 							</ul>
-								<a href="#" class="add-cart item_add">ADD TO CART</a>
-							
+								<a class="add-cart item_add btn-addtocart">ADD TO CART</a>
 						</div>
 					</div>
 					<div class="clearfix"> </div>
