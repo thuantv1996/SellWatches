@@ -54,5 +54,5 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         RequestMappingHandlerAdapter adapter = new RequestMappingHandlerAdapter();
         adapter.setIgnoreDefaultModelOnRedirect(true);
         return adapter;
-    }
+	}
 }

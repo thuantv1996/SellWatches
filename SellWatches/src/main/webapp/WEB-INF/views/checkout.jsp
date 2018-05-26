@@ -2,6 +2,7 @@
   pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix = "fmt" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="springForm" %>
 <!--A Design by W3layouts 
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -100,7 +101,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						</div>
 						<div class="col-md-6">
 							<span class="txtVND">VND</span>
-							<span class="txtPrice" data-checkout="0">
+							<span class="txtPrice" data-checkout="">
 								0₫
 							</span>
 						</div>
@@ -110,100 +111,115 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="col-md-6">
 					<div class="main">
 						<div class="main-content">
-							<div class="step">
-								<div class="step-sections " step="1">
-			
-			
-									<div class="section">
-										<div class="section-header">
-											<h2 class="section-title">Thông tin giao hàng</h2>
+						
+							<springForm:form method="post" action="" modelAttribute="infoOrderViewModel">
+								<div class="step">
+									<div class="step-sections " step="1">
+				
+										<div class="section">
+											<div class="section-header">
+												<h2 class="section-title">Thông tin giao hàng</h2>
+											</div>
+											<div class="section-content section-customer-information no-mb">
+				
+												<input name="utf8" type="hidden" value="✓">
+												<div class="inventory_location_data">
+				
+													<input name="customer_shipping_district" type="hidden" value="" />
+													<input name="customer_shipping_ward" type="hidden" value="" />
+				
+												</div>
+				
+				
+												<p class="section-content-text">
+													Bạn đã có tài khoản? <a
+														href="<c:url value="/Login" />">Đăng
+														nhập</a>
+												</p>
+				
+				
+												<div class="fieldset">
+				
+													<div class="field   ">
+														<div class="field-input-wrapper">
+															<label class="field-label" for="billing_address_full_name">Họ
+																và tên</label> <input placeholder="Họ và tên" autocapitalize="off"
+																spellcheck="false" class="field-input" size="30" type="text"
+																id="billing_address_full_name"
+																name="fullName" value="" required="required" />
+														</div>
+				
+													</div>
+				
+													<div class="field  field-two-thirds  ">
+														<div class="field-input-wrapper">
+															<label class="field-label" for="checkout_user_email">Email</label>
+															<input placeholder="Email" autocapitalize="off"
+																spellcheck="false" class="field-input" size="30"
+																type="email" id="checkout_user_email"
+																name="email" value="" required="required" />
+														</div>
+				
+													</div>
+				
+													<div class="field field-required field-third">
+														<div class="field-input-wrapper">
+															<label class="field-label" for="billing_address_phone">Số
+																điện thoại</label> <input placeholder="Số điện thoại"
+																autocapitalize="off" spellcheck="false" class="field-input"
+																size="30" maxlength="11" type="tel"
+																id="billing_address_phone" name="phoneNumber"
+																value="" required="required" />
+														</div>
+				
+													</div>
+				
+													<div class="field">
+														<div class="field-input-wrapper">
+															<label class="field-label" for="billing_address_address1">Địa
+																chỉ</label> <input placeholder="Địa chỉ" autocapitalize="off"
+																spellcheck="false" class="field-input" size="30" type="text"
+																id="billing_address_address1"
+																name="address" value="" required="required" />
+														</div>
+				
+													</div>
+													
+													<div class="field">
+														<div class="field-input-wrapper">
+															<label class="field-label" for="billing_address_address1">Ghi
+																Chú</label> <textarea placeholder="Ghi chú" autocapitalize="off"
+																spellcheck="false" class="field-input" size="200" rows="5" type="text"
+																id="describe"
+																name="describe" value="" required="required"></textarea>
+														</div>
+				
+													</div>
+				
+												</div>
+											</div>
+											
+											<div id="change_pick_location_or_shipping"></div>
 										</div>
-										<div class="section-content section-customer-information no-mb">
-			
-											<input name="utf8" type="hidden" value="✓">
-											<div class="inventory_location_data">
-			
-												<input name="customer_shipping_district" type="hidden" value="" />
-												<input name="customer_shipping_ward" type="hidden" value="" />
-			
-											</div>
-			
-			
-											<p class="section-content-text">
-												Bạn đã có tài khoản? <a
-													href="<c:url value="/Login" />">Đăng
-													nhập</a>
-											</p>
-			
-			
-											<div class="fieldset">
-			
-												<div class="field   ">
-													<div class="field-input-wrapper">
-														<label class="field-label" for="billing_address_full_name">Họ
-															và tên</label> <input placeholder="Họ và tên" autocapitalize="off"
-															spellcheck="false" class="field-input" size="30" type="text"
-															id="billing_address_full_name"
-															name="billing_address[full_name]" value="" />
-													</div>
-			
-												</div>
-			
-												<div class="field  field-two-thirds  ">
-													<div class="field-input-wrapper">
-														<label class="field-label" for="checkout_user_email">Email</label>
-														<input placeholder="Email" autocapitalize="off"
-															spellcheck="false" class="field-input" size="30"
-															type="email" id="checkout_user_email"
-															name="checkout_user[email]" value="" />
-													</div>
-			
-												</div>
-			
-												<div class="field field-required field-third">
-													<div class="field-input-wrapper">
-														<label class="field-label" for="billing_address_phone">Số
-															điện thoại</label> <input placeholder="Số điện thoại"
-															autocapitalize="off" spellcheck="false" class="field-input"
-															size="30" maxlength="11" type="tel"
-															id="billing_address_phone" name="billing_address[phone]"
-															value="" />
-													</div>
-			
-												</div>
-			
-												<div class="field">
-													<div class="field-input-wrapper">
-														<label class="field-label" for="billing_address_address1">Địa
-															chỉ</label> <input placeholder="Địa chỉ" autocapitalize="off"
-															spellcheck="false" class="field-input" size="30" type="text"
-															id="billing_address_address1"
-															name="billing_address[address1]" value="" />
-													</div>
-			
-												</div>
-			
-											</div>
+				
+				
+									</div>
+									<div class="step-footer">
+										<div class="checkOrderCart">
+											<span style="color:#f00">
+					                           ${checkOrderCart}
+					                        </span>
 										</div>
 										
-										<div id="change_pick_location_or_shipping"></div>
-									</div>
-			
-			
-								</div>
-								<div class="step-footer">
-			
-									<form id="form_next_step" accept-charset="UTF-8" method="post">
 										<input name="utf8" type="hidden" value="✓">
 										<button type="submit" class="step-footer-continue-btn btn">
-											<span class="btn-content">Tiếp tục đến phương thức thanh
-												toán</span> <i class="btn-spinner icon icon-button-spinner"></i>
+											<span class="btn-content">Thanh toán</span> <i class="btn-spinner icon icon-button-spinner"></i>
 										</button>
-									</form>
-									
+										
+									</div>
 								</div>
-							</div>
-			
+							</springForm:form>
+							
 						</div>	
 					</div>
 				</div>

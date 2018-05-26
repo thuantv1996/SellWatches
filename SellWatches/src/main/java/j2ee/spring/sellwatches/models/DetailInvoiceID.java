@@ -2,32 +2,33 @@ package j2ee.spring.sellwatches.models;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
-@Entity
-@Table
+@Embeddable
 public class DetailInvoiceID implements Serializable{
 	
-	private Order order;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Column(name = "MASP")
+	int productId;
 	
-	private Product product;
+	@Column(name = "MADH")
+	int orderId;
 
-	public Order getOrder() {
-		return order;
+	public int getProductId() {
+		return productId;
 	}
-
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setProductId(int productId) {
+		this.productId = productId;
 	}
-
-	public Product getProduct() {
-		return product;
+	public int getOrderId() {
+		return orderId;
 	}
-
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
 	}
-	
-	
 }

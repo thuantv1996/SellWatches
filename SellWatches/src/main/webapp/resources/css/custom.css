@@ -56,3 +56,8 @@ ul.cart-header li input {
     color: #4b4b4b;
     line-height: 1em;
 }
+
+.checkOrderCart {
+	position: absolute;
+	left: 0;
+}

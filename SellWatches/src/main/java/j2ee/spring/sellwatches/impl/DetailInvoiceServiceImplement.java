@@ -22,8 +22,7 @@ public class DetailInvoiceServiceImplement implements MSSQLService<DetailInvoice
 	}
 
 	public boolean insert(DetailInvoice t) {
-		// TODO Auto-generated method stub
-		return false;
+		return detailInvoiceDAO.insert(t);
 	}
 
 	public boolean update(DetailInvoice t) {
@@ -39,5 +38,4 @@ public class DetailInvoiceServiceImplement implements MSSQLService<DetailInvoice
 	public DetailInvoice findById(Object[] idPara) {
 		return detailInvoiceDAO.findById(idPara);
 	}
-
 }

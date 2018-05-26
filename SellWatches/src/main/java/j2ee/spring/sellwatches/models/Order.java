@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,14 +20,15 @@ import javax.persistence.Table;
 public class Order {
 	@Id
 	@Column(name = "MADH")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "TRANGTHAI")
+	@Column(name = "TRANGTHAI", length = 20)
 	private String status;
 	@Column(name = "DIACHIGIAO")
 	private String deliveryAddress;
 
-	@Column(name = "SDT")
+	@Column(name = "SDT", length = 12)
 	private String numberPhone;
 
 	@Column(name = "NGAYDAT")
@@ -44,7 +47,7 @@ public class Order {
 	@JoinColumn(name = "MAKH")
 	private Customer customer;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "MADH")
 	private List<DetailInvoice> listDetail;
 

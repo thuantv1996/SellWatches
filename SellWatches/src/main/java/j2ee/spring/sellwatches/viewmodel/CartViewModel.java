@@ -6,7 +6,7 @@ public class CartViewModel {
 	int price;
 	String productName;
 	String imgProduct;
-	
+
 	public String getImgProduct() {
 		return imgProduct;
 	}

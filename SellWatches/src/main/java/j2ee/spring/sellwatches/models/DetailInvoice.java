@@ -3,6 +3,7 @@ package j2ee.spring.sellwatches.models;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
@@ -16,34 +17,50 @@ import javax.persistence.Table;
 //@IdClass(DetailInvoiceID.class)
 public class DetailInvoice implements Serializable {
 
-	@Id
-	@ManyToOne
-	@JoinColumn(name = "MADH")
-	private Order order;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@EmbeddedId
+	DetailInvoiceID detailInvoiceID;
 	
-	@Id
-	@ManyToOne
-	@JoinColumn(name = "MASP")
-	private Product product;
+//	@Id
+//	@ManyToOne
+//	@JoinColumn(name = "MADH")
+//	private Order order;
+//	
+//	@Id
+//	@ManyToOne
+//	@JoinColumn(name = "MASP")
+//	private Product product;
 	
 	@Column(name = "SOLUONG")
 	private int quantity;
-
-	public Order getOrder() {
-		return order;
+	
+	public DetailInvoiceID getDetailInvoiceID() {
+		return detailInvoiceID;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setDetailInvoiceID(DetailInvoiceID detailInvoiceID) {
+		this.detailInvoiceID = detailInvoiceID;
 	}
 
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
+//	public Order getOrder() {
+//		return order;
+//	}
+//
+//	public void setOrder(Order order) {
+//		this.order = order;
+//	}
+//
+//	public Product getProduct() {
+//		return product;
+//	}
+//
+//	public void setProduct(Product product) {
+//		this.product = product;
+//	}
 
 	public int getQuantity() {
 		return quantity;
