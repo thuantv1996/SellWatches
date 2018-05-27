@@ -3,6 +3,7 @@ package j2ee.spring.sellwatches.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import j2ee.spring.sellwatches.common.CommonConstands;
@@ -22,6 +26,7 @@ import j2ee.spring.sellwatches.viewmodel.ProductOnView;
 
 @Controller
 @Component
+@SessionAttributes(CommonConstands.CART_SESSION)
 public class Home {
 	
 	ProductService service;
@@ -32,7 +37,7 @@ public class Home {
 		service = impl;
 	}
 	
-	@RequestMapping(value = {"/Index","/"})
+	@RequestMapping(method = RequestMethod.GET, value = {"/Index","/"})
 	public String  Index(Model model, HttpSession httpSession)
 	{
 		HomeViewModel viewModel = new HomeViewModel();

@@ -14,6 +14,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <head>
 	<title>Checkout</title>
 	<jsp:include page="head.jsp" />
+	<link href="<c:url value="/resources/css/checkouts.css" />" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body> 
 	<jsp:include page="masterpage_header.jsp" />

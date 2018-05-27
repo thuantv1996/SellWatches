@@ -36,7 +36,7 @@ public class AccountController {
 	AccountServiceImplement accountService;
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/Login")
-	public String Login() {
+	public String Login() {	
 		return "account";
 	}
 	
