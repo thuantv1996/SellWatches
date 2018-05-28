@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/java/j2ee/spring/sellwatches/controllers/AccountController.java=UTF-8
+encoding//src/main/java/j2ee/spring/sellwatches/controllers/Admin_ProductController.java=UTF-8
 encoding//src/main/java/j2ee/spring/sellwatches/controllers/Checkout.java=UTF-8
 encoding//src/main/java/j2ee/spring/sellwatches/controllers/ContactController.java=UTF-8
 encoding//src/main/java/j2ee/spring/sellwatches/controllers/Home.java=UTF-8

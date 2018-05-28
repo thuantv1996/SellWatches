@@ -45,7 +45,7 @@ public class Product {
 	@ManyToOne
 	@JoinColumn(name = "MALOAISP")
 	private Category category;
-
+	
 	@OneToMany
 	@JoinColumn(name = "MASP")
 	private List<DetailInvoice> listDetailInvoice;
@@ -148,6 +148,11 @@ public class Product {
 
 	public void setListDetailPromotions(List<DetailPromotion> listDetailsPromotions) {
 		this.listDetailPromotion = listDetailsPromotions;
+	}
+
+
+	public void setListDetailPromotion(List<DetailPromotion> listDetailPromotion) {
+		this.listDetailPromotion = listDetailPromotion;
 	}
 
 }

@@ -130,8 +130,8 @@ public class ProductDAO {
 
 	public List<Product> getListSellProduct() {
 		// lấy ra danh sách sản phẩm trong danh sách hóa đơn
-		String hql = "SELECT pd.id, SUM(di.quantity) FROM DetailInvoice di JOIN di.product pd "+
-					"GROUP BY pd.id "+
+		String hql = "SELECT di.detailInvoiceID.productId, SUM(di.quantity) FROM DetailInvoice di "+
+					"GROUP BY di.detailInvoiceID.productId "+
 					"ORDER BY Sum(di.quantity) DESC";
 		session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
