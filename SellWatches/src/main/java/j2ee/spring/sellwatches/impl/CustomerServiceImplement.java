@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import j2ee.spring.sellwatches.dao.CustomerDAO;
 import j2ee.spring.sellwatches.models.Customer;
 import j2ee.spring.sellwatches.services.MSSQLService;
+import j2ee.spring.sellwatches.viewmodel.UpdateOrderViewModel;
 
 @Component
 public class CustomerServiceImplement implements MSSQLService<Customer>{
@@ -33,6 +34,10 @@ public class CustomerServiceImplement implements MSSQLService<Customer>{
 
 	public Customer findById(Object[] idPara) {
 		return customerDAO.findById(idPara);
+	}
+	
+	public Boolean updateByPara(UpdateOrderViewModel updateOrderViewModel, int id) {
+		return customerDAO.updateByPara(updateOrderViewModel, id);
 	}
 
 }
