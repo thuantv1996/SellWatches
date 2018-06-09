@@ -73,7 +73,11 @@ public class ProductServiceImplement implements ProductService {
 	}
 
 	public List<ProductOnView> getNewProduct(int number) {
-		List<Product> lProduct = productDAO.select("DESC").subList(0, number);
+		List<Product> lProduct = productDAO.select("DESC");
+		if(lProduct.size()>number)
+		{
+			lProduct = lProduct.subList(0, number);
+		}
 		List<ProductOnView> result = new ArrayList<ProductOnView>();
 		for (Product product : lProduct) {
 			int idProduct = product.getId();
@@ -148,5 +152,20 @@ public class ProductServiceImplement implements ProductService {
 		}
 		// trả về
 		return result;
+	}
+	
+	public int TakeQuantityProduct(int masp) {
+		Object[] idPara = {masp};
+		Product product = productDAO.findById(idPara);
+		return product.getNumber();
+	}
+	
+	public int GetPromotion(int id) {
+		return productDAO.GetPromotion(id);
+	}
+
+	@Override
+	public Boolean UpdateQuantityProduct(int masp, int soluong, Boolean kiemtra) {
+		return productDAO.UpdateQuantityProduct(masp, soluong, kiemtra);
 	}
 }

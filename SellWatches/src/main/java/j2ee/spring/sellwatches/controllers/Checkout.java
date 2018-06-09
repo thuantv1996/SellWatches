@@ -182,7 +182,7 @@ public class Checkout {
 			
 			Order order = new Order();
 			order.setCustomer(customer);
-			order.setStatus("Chưa giao");
+			order.setStatus("chờ kiểm duyệt");
 			order.setDeliveryAddress(infoOrderViewModel.getAddress());
 			order.setNumberPhone(infoOrderViewModel.getPhoneNumber());
 			order.setOrderDay(timestamp);
@@ -204,8 +204,8 @@ public class Checkout {
 					boolean checkSuccess = detailInvoiceServiceImplement.insert(detailInvoice);
 					if(checkSuccess) {
 						modelMap.addAttribute("checkOrderCart", "Thanh toán thành công");
-						Product product = orderServiceImplement.TakeQuantityProduct(listItemCart.getId());
-						orderServiceImplement.UpdateQuantityProduct(listItemCart.getId(), product.getNumber() - listItemCart.getQuantity());
+//						Product product = orderServiceImplement.TakeQuantityProduct(listItemCart.getId());
+//						orderServiceImplement.UpdateQuantityProduct(listItemCart.getId(), product.getNumber() - listItemCart.getQuantity());
 					}else {
 						modelMap.addAttribute("checkOrderCart", "Thanh toán thất bại");
 					}
@@ -243,7 +243,7 @@ public class Checkout {
 			
 			Order order = new Order();
 			order.setCustomer(customer);
-			order.setStatus("Chưa giao");
+			order.setStatus("chờ kiểm duyệt");
 			order.setDeliveryAddress(infoOrderViewModel.getAddress());
 			order.setNumberPhone(infoOrderViewModel.getPhoneNumber());
 			order.setOrderDay(timestamp);
@@ -265,8 +265,8 @@ public class Checkout {
 					boolean checkSuccess = detailInvoiceServiceImplement.insert(detailInvoice);
 					if(checkSuccess) {
 						modelMap.addAttribute("checkOrderCart", "Thanh toán thành công");
-						Product product = orderServiceImplement.TakeQuantityProduct(listItemCart.getId());
-						orderServiceImplement.UpdateQuantityProduct(listItemCart.getId(), product.getNumber() - listItemCart.getQuantity());
+//						Product product = orderServiceImplement.TakeQuantityProduct(listItemCart.getId());
+//						orderServiceImplement.UpdateQuantityProduct(listItemCart.getId(), product.getNumber() - listItemCart.getQuantity());
 					}else {
 						modelMap.addAttribute("checkOrderCart", "Thanh toán thất bại");
 					}

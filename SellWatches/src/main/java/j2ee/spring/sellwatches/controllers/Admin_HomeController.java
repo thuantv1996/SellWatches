@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Component
 public class Admin_HomeController {
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/Admin/Home")
+	@RequestMapping(method = RequestMethod.GET, value = "/admin/home")
 	public String Default() {
 		return "admin_index";
 	}

@@ -4,11 +4,13 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
 import javax.persistence.Query;
+import javax.persistence.TemporalType;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
@@ -130,8 +132,8 @@ public class ProductDAO {
 
 	public List<Product> getListSellProduct() {
 		// lấy ra danh sách sản phẩm trong danh sách hóa đơn
-		String hql = "SELECT pd.id, SUM(di.quantity) FROM DetailInvoice di JOIN di.product pd "+
-					"GROUP BY pd.id "+
+		String hql = "SELECT di.detailInvoiceID.productId, SUM(di.quantity) FROM DetailInvoice di "+
+					"GROUP BY di.detailInvoiceID.productId "+
 					"ORDER BY Sum(di.quantity) DESC";
 		session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
@@ -270,6 +272,65 @@ public class ProductDAO {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 			return null;
+		}
+	}
+	
+	public int GetPromotion(int id) {
+		session = HibernateUtil.getSessionFactory().getCurrentSession();
+		int PHANTRAMKM = 0;
+		try {
+			session.getTransaction().begin();
+			Timestamp toDay = new Timestamp(System.currentTimeMillis());
+			Query query = session.createQuery("select ctkm.content from Promotion km, DetailPromotion ctkm where km.id = ctkm.promotion.id and ctkm.product.id = :id and km.beginDay <= km.endDay and km.endDay >= :toDay");
+			query.setParameter("id", id);
+			query.setParameter("toDay", toDay, TemporalType.TIMESTAMP);
+			List<Integer> result = query.getResultList();
+			if (result.size() > 0) {
+				PHANTRAMKM = Collections.max(result);
+				// write log
+				System.out.println("find excute!");
+			}
+			session.getTransaction().commit();
+			return PHANTRAMKM;
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+			return 0;
+		}
+	}
+	
+	//lấy số lượng tồn kho và xử lý cộng trừ
+	public int HandleQuantityProduct(int masp, int soluong, Boolean kiemtra) {
+		Object[] idPara = {masp};
+		Product product = findById(idPara);
+		int soluongtonkho = product.getNumber();
+		if(kiemtra) {
+			soluongtonkho += soluong;
+		}else {
+			soluongtonkho -= soluong;
+		}
+		return soluongtonkho;
+	}
+	
+	public Boolean UpdateQuantityProduct(int masp, int soluong, Boolean kiemtra) {
+		int soluongmoi = HandleQuantityProduct(masp, soluong, kiemtra);
+		session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.getTransaction().begin();
+			Query query = session.createQuery("update Product set number= :number where id= :id");
+			query.setParameter("number", soluongmoi);
+			query.setParameter("id", masp);
+			int result = query.executeUpdate();
+			if (result > 0) {
+				// write log
+				System.out.println("Rows affected: " + result);
+			}
+			session.getTransaction().commit();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+			return false;
 		}
 	}
 }

@@ -13,7 +13,9 @@ import j2ee.spring.sellwatches.models.Product;
 import j2ee.spring.sellwatches.services.MSSQLService;
 import j2ee.spring.sellwatches.services.Orderservice;
 import j2ee.spring.sellwatches.viewmodel.CartViewModel;
+import j2ee.spring.sellwatches.viewmodel.DetailInvoiceProductViewModel;
 import j2ee.spring.sellwatches.viewmodel.InfoOrderViewModel;
+import j2ee.spring.sellwatches.viewmodel.UpdateOrderViewModel;
 
 @Component
 public class OrderServiceImplement implements Orderservice, MSSQLService<Order> {
@@ -55,5 +57,18 @@ public class OrderServiceImplement implements Orderservice, MSSQLService<Order> 
 	
 	public Boolean UpdateQuantityProduct(int id, int quantity) {
 		return orderDAO.UpdateQuantityProduct(id, quantity);
+	}
+
+	public List<Order> TakeListOrderLimit(int firstOrder) {
+		return orderDAO.TakeListOrderLimit(firstOrder);
+	}
+
+	@Override
+	public List<Object[]> LoadOrderDetail(int mahd) {
+		return orderDAO.LoadOrderDetail(mahd);
+	}
+	
+	public Boolean UpdateOrderByPara(UpdateOrderViewModel updateOrderViewModel, float totalMoney) {
+		return orderDAO.UpdateOrderByPara(updateOrderViewModel, totalMoney);
 	}
 }
