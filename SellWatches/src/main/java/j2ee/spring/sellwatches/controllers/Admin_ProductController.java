@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,9 +60,8 @@ public class Admin_ProductController {
 		// Ngược lại có n/p+1 trang
 		int numberPage = products.size() % NUMBER_PRODUCT_ON_PAGE == 0 ? products.size() / NUMBER_PRODUCT_ON_PAGE
 				: products.size() / NUMBER_PRODUCT_ON_PAGE + 1;
-		if(page>numberPage)
-		{
-			return "redirect:/admin/products?page="+numberPage;
+		if (page > numberPage) {
+			return "redirect:/admin/products?page=" + numberPage;
 		}
 		// vị trì bắt đầu là số lượng sản phẩm trên trang (n) * (Page -1)
 		int beginIndex = NUMBER_PRODUCT_ON_PAGE * (page - 1);
@@ -143,6 +144,7 @@ public class Admin_ProductController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			index++;
 		}
 		// update
 		old_product.setCategory(category);
@@ -163,4 +165,85 @@ public class Admin_ProductController {
 		redirectAttributes.addAttribute("page", 1);
 		return new RedirectView("/SellWatches/admin/products");
 	}
+
+	@RequestMapping(value = "/admin/products/add", method = RequestMethod.GET)
+	public String addProduct(Model model) {
+		// lấy danh sách thương hiệu
+		List<Trademark> listTrademarks = trademarkService.select();
+		model.addAttribute("trademarks", listTrademarks);
+		// lấy danh sách Loại sp
+		List<Category> listCategory = categoryService.select();
+		model.addAttribute("categories", listCategory);
+		model.addAttribute("product",new Product());
+		return "admin_add_product";
+	}
+
+	@RequestMapping(value = "/admin/products/addsubmit", method = RequestMethod.POST)
+	public String addProduct(@RequestParam("fileBigImg") MultipartFile fileBigImg,
+			@RequestParam("fileSmall") MultipartFile[] fileSmall,@RequestParam("idTrademark") int idTrademark,
+			@RequestParam("idCategory") String idCategory,
+			@ModelAttribute("product") Product product, Model model,
+			HttpServletRequest request) {
+
+//		int idTrademark = Integer.parseInt(request.getParameter("idTrademark"));
+//		String idCategory = request.getParameter("idCategory");
+		// Lấy thông tin trademark
+		Object[] id_t = { idTrademark };
+		Trademark trademark = trademarkService.findById(id_t);
+//		// lấy thông tin category
+		Object[] id_c = { idCategory };
+		Category category = categoryService.findById(id_c);
+
+		String fileName = fileBigImg.getOriginalFilename();
+		String[] arr = StringUtils.split(fileName,".");
+		String folder = arr[0];
+		// đặt lại tên file
+		File bigImageFile = new File(request.getServletContext().getRealPath("/resources/images/HINHLON/" + fileName));
+		if (!bigImageFile.exists()) {
+			bigImageFile.mkdirs();
+		}
+		try {
+			if (!fileBigImg.isEmpty())
+				fileBigImg.transferTo(bigImageFile);
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int index = 1;
+		// Thêm thư mục 
+		File foderSmall = new File(request.getServletContext().getRealPath("/resources/images/HINHNHO/" + folder));
+		if (!foderSmall.exists()) {
+			foderSmall.mkdirs();
+		}
+		for (MultipartFile fitem : fileSmall) {
+			File smallFile = new File(request.getServletContext()
+					.getRealPath("/resources/images/HINHNHO/" + folder + "/" + index + ".jpg"));
+			if (!smallFile.exists()) {
+				smallFile.mkdirs();
+			}
+			try {
+				if (!fitem.isEmpty())
+					fitem.transferTo(smallFile);
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			index++;
+		}
+		// Add
+		product.setBigImage(fileName);
+		product.setCategory(category);
+		product.setNumber(0);
+		product.setSmallImage(folder);
+		product.setTrademark(trademark);
+		service.insert(product);
+		return "admin_add_product";
+	}
+
 }

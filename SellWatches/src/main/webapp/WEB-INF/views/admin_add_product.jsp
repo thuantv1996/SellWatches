@@ -23,33 +23,32 @@
 				<!--grid-->
 				<div class="grid-form">
 					<div class="grid-form1">
-						<h2 id="forms-example" class="">Edit Product</h2>
-						<form:form method="POST" action="edit"
-							enctype="multipart/form-data">
+						<h2 id="forms-example" class="">Add Product</h2>
+						<form:form method="POST" action="addsubmit"
+							modelAttribute="product" enctype="multipart/form-data">
 							<div class="form-group">
-								<input type="hidden" name="id" value="${product.getId()}" /> <label
-									for="exampleInputEmail1">Name product</label> <input
-									type="text" class="form-control" name="nameProduct"
-									placeholder="Name product" value="${product.getNameProduct()}" />
+								<label for="exampleInputEmail1">Name product</label>
+								<form:input type="text" class="form-control" path="nameProduct"
+									placeholder="Name product"></form:input>
 							</div>
 							<div class="form-group">
-								<label for="exampleInputPassword1">Description</label> <input
-									type="text" class="form-control" placeholder="Description"
-									name="description" value="${product.getDescription()}" />
+								<label for="exampleInputPassword1">Description</label>
+								<form:input type="text" class="form-control"
+									placeholder="Description" path="description" />
 							</div>
 							<div class="form-group">
 								<label for="exampleInputPassword1">Evalute</label>
-								<textarea cols="5" rows="3" class="form-control"
-									placeholder="Evalute" name="evalute">${product.getEvalute()}</textarea>
+								<form:textarea cols="5" rows="3" class="form-control"
+									placeholder="Evalute" path="evalute" />
 							</div>
 							<div class="form-group">
-								<label for="exampleInputPassword1">Price</label> <input
-									type="text" class="form-control" placeholder="Price"
-									name="price" value="${product.getPrice() }" />
+								<label for="exampleInputPassword1">Price</label>
+								<form:input type="text" class="form-control" placeholder="Price"
+									path="price" />
 							</div>
 							<div class="form-group">
-								<label for="exampleInputPassword1">Number: </label> <label
-									name="number"> ${product.getNumber()}</label>
+								<label for="exampleInputPassword1">Number: </label> <label>
+									0</label>
 							</div>
 							<div class="form-group">
 								<label for="exampleInputPassword1">Trademark</label> <select
@@ -57,7 +56,7 @@
 									<c:forEach items="${trademarks}" var="item">
 										<option value="${item.getId()}">${item.getName()}</option>
 									</c:forEach>
-								</select> <input type="hidden" value="" name=trademark />
+								</select>
 							</div>
 							<div class="form-group">
 								<label for="exampleInputPassword1">Category</label> <select
@@ -65,14 +64,14 @@
 									<c:forEach items="${categories}" var="item">
 										<option value="${item.getId()}">${item.getNameCategory()}</option>
 									</c:forEach>
-								</select> <input type="hidden" value="" name=category />
+								</select>
 							</div>
 							<div class="form-group">
 								<label for="exampleInputPassword1">Big image</label> <input
 									type="file" name="fileBigImg">
 							</div>
 							<div class="form-group">
-								<label for="exampleInputPassword1">Smail image</label> <input
+								<label for="exampleInputPassword1">Small image</label> <input
 									type="file" name="fileSmall"> <input type="file"
 									name="fileSmall"> <input type="file" name="fileSmall">
 							</div>
@@ -84,19 +83,19 @@
 
 				<!-- script-for sticky-nav -->
 				<script>
-		$(document).ready(function() {
-			var navoffeset = $(".header-main").offset().top;
-			$(window).scroll(function() {
-				var scrollpos = $(window).scrollTop();
-				if (scrollpos >= navoffeset) {
-					$(".header-main").addClass("fixed");
-				} else {
-					$(".header-main").removeClass("fixed");
-				}
-			});
+					$(document).ready(function() {
+						var navoffeset = $(".header-main").offset().top;
+						$(window).scroll(function() {
+							var scrollpos = $(window).scrollTop();
+							if (scrollpos >= navoffeset) {
+								$(".header-main").addClass("fixed");
+							} else {
+								$(".header-main").removeClass("fixed");
+							}
+						});
 
-		});
-	</script>
+					});
+				</script>
 				<!-- /script-for sticky-nav -->
 				<!--inner block start here-->
 				<div class="inner-block"></div>
@@ -117,29 +116,30 @@
 		<div class="clearfix"></div>
 	</div>
 	<script>
-		var toggle = true;
+			var toggle = true;
 
-		$(".sidebar-icon").click(
-				function() {
-					if (toggle) {
-						$(".page-container").addClass("sidebar-collapsed")
-								.removeClass("sidebar-collapsed-back");
-						$("#menu span").css({
-							"position" : "absolute"
-						});
-					} else {
-						$(".page-container").removeClass("sidebar-collapsed")
-								.addClass("sidebar-collapsed-back");
-						setTimeout(function() {
+			$(".sidebar-icon").click(
+					function() {
+						if (toggle) {
+							$(".page-container").addClass("sidebar-collapsed")
+									.removeClass("sidebar-collapsed-back");
 							$("#menu span").css({
-								"position" : "relative"
+								"position" : "absolute"
 							});
-						}, 400);
-					}
+						} else {
+							$(".page-container").removeClass(
+									"sidebar-collapsed").addClass(
+									"sidebar-collapsed-back");
+							setTimeout(function() {
+								$("#menu span").css({
+									"position" : "relative"
+								});
+							}, 400);
+						}
 
-					toggle = !toggle;
-				});
-	</script>
+						toggle = !toggle;
+					});
+		</script>
 	<!--js -->
 	<script
 		src="<c:url value="/resources/admin_js/jquery.nicescroll.js" />"></script>
@@ -147,6 +147,5 @@
 	<!-- Bootstrap Core JavaScript -->
 	<script src="<c:url value="/resources/admin_js/bootstrap.min.js" />"></script>
 	<!-- /Bootstrap Core JavaScript -->
-
 </body>
 </html>
