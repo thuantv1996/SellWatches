@@ -8,7 +8,6 @@ import org.hibernate.Session;
 import org.springframework.stereotype.Component;
 
 import j2ee.spring.sellwatches.models.Customer;
-import j2ee.spring.sellwatches.viewmodel.UpdateOrderViewModel;
 
 @Component
 public class CustomerDAO {
@@ -110,27 +109,5 @@ public class CustomerDAO {
 			return null;
 		}
 	}
-	
-	public Boolean updateByPara(UpdateOrderViewModel updateOrderViewModel, int id) {
-		session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.getTransaction().begin();
-			Query query = session.createQuery("update Customer set name= :name, numberPhone= :numberPhone, address= :address where id= :id");
-			query.setParameter("id", id);
-			query.setParameter("name", updateOrderViewModel.getTennguoinhan());
-			query.setParameter("numberPhone", updateOrderViewModel.getSodt());
-			query.setParameter("address", updateOrderViewModel.getDiachi());
-			int result = query.executeUpdate();
-			if (result > 0) {
-				// write log
-				System.out.println("Rows affected: " + result);
-			}
-			session.getTransaction().commit();
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			session.getTransaction().rollback();
-			return false;
-		}
-	}
+
 }

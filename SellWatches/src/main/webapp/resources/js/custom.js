@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+	
 	$('.btn-addtocart').click(function() {
 		var productname = $("#data-productname").text();
 		var imgproduct = $("#img-product").attr("data-img");
@@ -85,7 +85,6 @@ $(document).ready(function(){
 		})
 	})
 });
-
 
 function addPeriod(nStr)
 {

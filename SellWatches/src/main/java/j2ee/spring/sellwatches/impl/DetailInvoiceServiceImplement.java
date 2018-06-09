@@ -38,8 +38,4 @@ public class DetailInvoiceServiceImplement implements MSSQLService<DetailInvoice
 	public DetailInvoice findById(Object[] idPara) {
 		return detailInvoiceDAO.findById(idPara);
 	}
-	
-	public boolean DeleteByID(int mahd) {
-		return detailInvoiceDAO.DeleteByID(mahd);
-	}
 }

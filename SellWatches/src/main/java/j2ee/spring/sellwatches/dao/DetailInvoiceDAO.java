@@ -109,24 +109,4 @@ public class DetailInvoiceDAO{
 			return null;
 		}
 	}
-	
-	public boolean DeleteByID(int mahd) {
-		session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.getTransaction().begin();
-			Query query = session.createQuery("delete DetailInvoice ctdh where ctdh.detailInvoiceID.orderId = :mahd");
-			query.setParameter("mahd", mahd);
-			int result = query.executeUpdate();
-			if (result > 0) {
-				// write log
-				System.out.println("Rows affected: " + result);
-			}
-			session.getTransaction().commit();
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			session.getTransaction().rollback();
-			return false;
-		}
-	}
 }

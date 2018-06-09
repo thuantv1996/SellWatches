@@ -149,19 +149,4 @@ public class ProductServiceImplement implements ProductService {
 		// trả về
 		return result;
 	}
-	
-	public int TakeQuantityProduct(int masp) {
-		Object[] idPara = {masp};
-		Product product = productDAO.findById(idPara);
-		return product.getNumber();
-	}
-	
-	public int GetPromotion(int id) {
-		return productDAO.GetPromotion(id);
-	}
-
-	@Override
-	public Boolean UpdateQuantityProduct(int masp, int soluong, Boolean kiemtra) {
-		return productDAO.UpdateQuantityProduct(masp, soluong, kiemtra);
-	}
 }

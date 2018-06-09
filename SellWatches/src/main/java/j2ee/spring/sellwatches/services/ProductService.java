@@ -29,5 +29,4 @@ public interface ProductService extends MSSQLService<Product>{
 
 	List<ProductOnView> findByKey(String key);
 	
-	public Boolean UpdateQuantityProduct(int masp, int soluong, Boolean kiemtra);
 }
