@@ -7,6 +7,7 @@ import javax.persistence.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
 
+import j2ee.spring.sellwatches.models.Account;
 import j2ee.spring.sellwatches.models.Category;
 
 @Component

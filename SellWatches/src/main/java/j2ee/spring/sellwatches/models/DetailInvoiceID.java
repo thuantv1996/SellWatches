@@ -31,12 +31,4 @@ public class DetailInvoiceID implements Serializable{
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
 	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if(obj == this)
-			return true;
-		else
-			return false;
-	}
 }

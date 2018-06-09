@@ -73,11 +73,7 @@ public class ProductServiceImplement implements ProductService {
 	}
 
 	public List<ProductOnView> getNewProduct(int number) {
-		List<Product> lProduct = productDAO.select("DESC");
-		if(lProduct.size()>number)
-		{
-			lProduct = lProduct.subList(0, number);
-		}
+		List<Product> lProduct = productDAO.select("DESC").subList(0, number);
 		List<ProductOnView> result = new ArrayList<ProductOnView>();
 		for (Product product : lProduct) {
 			int idProduct = product.getId();

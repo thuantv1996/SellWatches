@@ -3,7 +3,6 @@ package j2ee.spring.sellwatches.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Component;
 
 import j2ee.spring.sellwatches.dao.CategoryDAO;
@@ -11,16 +10,10 @@ import j2ee.spring.sellwatches.models.Category;
 import j2ee.spring.sellwatches.services.MSSQLService;
 
 @Component
-@Configurable
 public class CategoryServiceImplement implements MSSQLService<Category> {
 
 	@Autowired
 	private CategoryDAO categoryDAO;
-	@Autowired
-	public void setCategoryDAO(CategoryDAO categoryDAO)
-	{
-		this.categoryDAO = categoryDAO;
-	}
 	
 	public List<Category> select() {
 		// TODO Auto-generated method stub

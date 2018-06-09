@@ -6,11 +6,10 @@ import javax.persistence.Query;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import j2ee.spring.sellwatches.models.Trademark;
 
-@Repository
+@Component
 public class TrademarkDAO {
 	private Session session;
 
