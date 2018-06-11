@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,10 +17,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import j2ee.spring.sellwatches.common.CommonConstands;
 import j2ee.spring.sellwatches.impl.CategoryServiceImplement;
 import j2ee.spring.sellwatches.impl.ProductServiceImplement;
 import j2ee.spring.sellwatches.models.Category;
@@ -30,6 +33,7 @@ import j2ee.spring.sellwatches.services.TrademarkService;
 
 @Component
 @Controller
+@SessionAttributes(CommonConstands.ADMIN_SESSION)
 public class Admin_ProductController {
 
 	// Số sản phẩm trên trang
@@ -50,7 +54,10 @@ public class Admin_ProductController {
 
 	// index
 	@RequestMapping(value = "/admin/products", method = RequestMethod.GET)
-	public String index(@RequestParam("page") int page, Model model) {
+	public String index(@RequestParam("page") int page, Model model,HttpSession httpSession) {
+		if(httpSession.getAttribute(CommonConstands.ADMIN_SESSION) == null) {
+			return "redirect: login ";
+		}
 		// Lấy danh sản phẩm
 		List<Product> products = new ArrayList<Product>();
 		products = service.select();
@@ -88,8 +95,10 @@ public class Admin_ProductController {
 
 	// edit
 	@RequestMapping(value = "/admin/products/edit", method = RequestMethod.GET)
-	public String edit(@RequestParam("id") int id, Model model) {
-
+	public String edit(@RequestParam("id") int id, Model model,HttpSession httpSession) {
+		if(httpSession.getAttribute(CommonConstands.ADMIN_SESSION) == null) {
+			return "redirect: ../login ";
+		}
 		// lấy danh sách thương hiệu
 		List<Trademark> listTrademarks = trademarkService.select();
 		model.addAttribute("trademarks", listTrademarks);
@@ -106,7 +115,10 @@ public class Admin_ProductController {
 	@RequestMapping(value = "/admin/products/edit", method = RequestMethod.POST)
 	public String edit_submit(@RequestParam("fileBigImg") MultipartFile fileBigImg,
 			@RequestParam("fileSmall") MultipartFile[] fileSmall, Product product, Model model,
-			HttpServletRequest request) {
+			HttpServletRequest request,HttpSession httpSession) {
+		if(httpSession.getAttribute(CommonConstands.ADMIN_SESSION) == null) {
+			return "redirect: login ";
+		}
 		int idTrademark = Integer.parseInt(request.getParameter("idTrademark"));
 		String idCategory = request.getParameter("idCategory");
 		// Lấy đối tượng product
@@ -158,7 +170,10 @@ public class Admin_ProductController {
 
 	@RequestMapping(value = "/admin/products/delete", method = RequestMethod.GET)
 	public RedirectView delete(@RequestParam("id") int id, @RequestParam("page") int page,
-			RedirectAttributes redirectAttributes) {
+			RedirectAttributes redirectAttributes,HttpSession httpSession) {
+		if(httpSession.getAttribute(CommonConstands.ADMIN_SESSION) == null) {
+			return new RedirectView("/SellWatches/admin/login");
+		}
 		// Xóa sản phẩm
 		Object[] idPara = { id };
 		service.delete(idPara);
@@ -167,7 +182,10 @@ public class Admin_ProductController {
 	}
 	
 	@RequestMapping(value = "/admin/products/add", method = RequestMethod.GET)
-	public String addProduct(Model model) {
+	public String addProduct(Model model,HttpSession httpSession) {
+		if(httpSession.getAttribute(CommonConstands.ADMIN_SESSION) == null) {
+			return "redirect: ../login ";
+		}
 		// lấy danh sách thương hiệu
 		List<Trademark> listTrademarks = trademarkService.select();
 		model.addAttribute("trademarks", listTrademarks);

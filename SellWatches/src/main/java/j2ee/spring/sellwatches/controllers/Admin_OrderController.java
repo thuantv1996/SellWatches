@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import j2ee.spring.sellwatches.common.CommonConstands;
 import j2ee.spring.sellwatches.dao.HibernateUtil;
 import j2ee.spring.sellwatches.impl.CustomerServiceImplement;
 import j2ee.spring.sellwatches.impl.DetailInvoiceServiceImplement;
@@ -33,6 +36,7 @@ import j2ee.spring.sellwatches.viewmodel.UpdateOrderViewModel;
 
 @Component
 @Controller
+@SessionAttributes(CommonConstands.ADMIN_SESSION)
 public class Admin_OrderController {
 	
 	@Autowired
@@ -48,8 +52,10 @@ public class Admin_OrderController {
 	DetailInvoiceServiceImplement detailInvoiceServiceImplement;
 	
 	@RequestMapping(value = "/admin/order", method = RequestMethod.GET)
-	public String Default(ModelMap modelMap) {
-				
+	public String Default(ModelMap modelMap,HttpSession httpSession) {
+		if(httpSession.getAttribute(CommonConstands.ADMIN_SESSION) == null) {
+			return "redirect: login ";
+		}
 		int totalRecord = orderServiceImplement.select().size();
 		int totalPage = (int) Math.ceil(((double)totalRecord/10));
 		modelMap.addAttribute("totalPage", 10);

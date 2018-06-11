@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.persistence.Query;
+import javax.persistence.TemporalType;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
@@ -55,7 +56,13 @@ public class PromotionDAO{
 		session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.getTransaction().begin();
-			session.update(t);
+			Query query = session.createQuery("update Promotion set namePromotion = :namePromotion, beginDay = :beginDay,"
+					+ " endDay = :endDay where id = :id");
+			query.setParameter("id", t.getId());
+			query.setParameter("namePromotion", t.getNamePromotion());
+			query.setParameter("beginDay", t.getBeginDay(),TemporalType.TIMESTAMP);
+			query.setParameter("endDay", t.getEndDay(),TemporalType.TIMESTAMP);
+			query.executeUpdate();
 			session.getTransaction().commit();
 			return true;
 		} catch (Exception e) {
@@ -129,4 +136,30 @@ public class PromotionDAO{
 			return null;
 		}
 	}
+
+	public List<Promotion> getListDES() {
+		session = HibernateUtil.getSessionFactory().getCurrentSession();
+		try {
+			session.getTransaction().begin();
+			@SuppressWarnings("unchecked")
+			List<Promotion> res = session.createQuery("from Promotion p ORDER BY p.beginDay DESC ").getResultList();
+			session.getTransaction().commit();
+			return res;
+		} catch (Exception e) {
+			e.printStackTrace();
+			session.getTransaction().rollback();
+			return null;
+		}
+	}
+
+	public String getMaxId() {
+		try {
+			return getListDES().get(0).getId();
+		}catch(Exception e)
+		{
+			return "KM00000";
+		}
+		
+	}
+
 }

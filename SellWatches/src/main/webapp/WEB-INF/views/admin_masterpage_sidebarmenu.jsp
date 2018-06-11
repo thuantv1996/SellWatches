@@ -20,13 +20,29 @@
 				<div class="clearfix"></div></a>
 				<ul id="menu-academico-sub">
 					<li id="menu-academico-boletim"><a href="calendar.html">Calendar</a></li>
-					<li id="menu-academico-avaliacoes"><a href="signin.html">Sign
-							In</a></li>
-					<li id="menu-academico-avaliacoes"><a
-						href="<c:url value="/admin/order" />">Order</a></li>
-
-
-				</ul></li>
+					<li id="menu-academico-avaliacoes"><a href="signin.html">Sign In</a></li>
+				</ul>
+			</li>
+			<li id="menu-academico"><a href="/SellWatches/admin/products?page=1"><i
+					class="fa fa-product-hunt"></i> <span>Product</span> <span
+					class="fa fa-angle-right" style="float: right"></span>
+				<div class="clearfix"></div></a>
+				<ul id="menu-academico-sub">
+					<li id="menu-academico-boletim"><a href="/SellWatches/admin/products/add">Add Product</a></li>
+				</ul>
+			</li>
+			<li id="menu-academico"><a href="/SellWatches/admin/promotion?page=1"><i
+					class="fa fa-arrow-circle-down"></i> <span>Promotion</span> <span
+					class="fa fa-angle-right" style="float: right"></span>
+				<div class="clearfix"></div></a>
+				<ul id="menu-academico-sub">
+					<li id="menu-academico-boletim"><a href="/SellWatches/admin/promotion/add">Add promotion</a></li>
+				</ul>
+			</li>
+			<li id="menu-academico"><a href="/SellWatches/admin/order"><i
+					class="fa fa-first-order"></i> <span>Order</span>
+				<div class="clearfix"></div></a>
+			</li>
 		</ul>
 	</div>
 </div>

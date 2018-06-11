@@ -1,28 +1,38 @@
 package j2ee.spring.sellwatches.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import java.io.Serializable;
 
-@Entity
-@Table
-public class DetailPromotionID {
-	private Promotion promotion;
-	private Product product;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
-	public Promotion getPromotion() {
+@Embeddable
+public class DetailPromotionID implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
+	@Column(name="MAKM")
+	private String promotion;
+	@Column(name = "MASP")
+	private int product;
+	
+	public String getPromotion() {
 		return promotion;
 	}
-
-	public void setPromotion(Promotion promotion) {
+	public void setPromotion(String promotion) {
 		this.promotion = promotion;
 	}
-
-	public Product getProduct() {
+	public int getProduct() {
 		return product;
 	}
-
-	public void setProduct(Product product) {
+	public void setProduct(int product) {
 		this.product = product;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == this)
+			return true;
+		else
+			return false;
+	}
 }

@@ -22,6 +22,7 @@ import j2ee.spring.sellwatches.models.Trademark;
 
 @Component
 public class ProductDAO {
+	
 	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 	
 	private Session session;
@@ -183,8 +184,12 @@ public class ProductDAO {
 		for (DetailPromotion detailPromotion : detailPromotions) {
 			// Kiem tra ngay bat dau va ket thuc
 			Timestamp current = new Timestamp(System.currentTimeMillis());
-			if(detailPromotion.getPromotion().getBeginDay().before(current) && 
-					detailPromotion.getPromotion().getEndDay().after(current))
+			String idPromotion = detailPromotion.getDetailPromotionID().getPromotion();
+			PromotionDAO promotionDAO = new PromotionDAO();
+			Object[] idPara = {idPromotion};
+			Promotion promotion = promotionDAO.findById(idPara);
+			if(promotion.getBeginDay().before(current) && 
+					promotion.getEndDay().after(current))
 			{
 				// kiem tra phan tram khuyen mai
 				if(detailPromotion.getContent()>maxContent)
